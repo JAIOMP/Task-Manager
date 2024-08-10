@@ -1,46 +1,55 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import TaskStatus from './TaskStatus.vue'
 
-interface TaskStatus {
-  pending: string,
-  inProgress: string,
-  completed: string
-}
-
-const TASK_STATUS: TaskStatus = {
-  pending: 'Pending',
-  inProgress: 'In progress',
-  completed: 'Completed'
-}
-
-const selectedStatus = ref<string>(TASK_STATUS.pending)
-
-
-function updateStatus(status: string) {
-  selectedStatus.value = status
-}
+const tasks = ref<any[]>([
+    {
+      id: 1,
+      title: 'Task 1',
+      description: 'Description for Task 1',
+      dueDate: '2023-08-01',
+      status: 'Pending',
+    },
+    {
+      id: 2,
+      title: 'Task 2',
+      description: 'Description for Task 2',
+      dueDate: '2023-08-05',
+      status: 'Completed',
+    },
+  ])
 
 </script>
 <template>
   <div class="todo__task-list">
-    <div class="todo__task-card">
-      <h2>Title</h2>
-      <p> this is descrption this is descrption</p>
-      <div v-for="(label, status) in TASK_STATUS" :key="status" class="todo__task-status">
-        <label>
-          <input 
-            type="checkbox" 
-            :value="status" 
-            :checked="selectedStatus === status"
-            @change="updateStatus(status)"
-          />
-        {{ label }}
-      </label>
+    <div v-for="task in tasks" :key="task.id" class="todo__task-card">
+      <div>
+        <h2>{{  task.title }}</h2>
+        <p>Due date: {{ task.dueDate }}</p>
       </div>
+      <p>{{ task.description }}</p>
+      <TaskStatus :taskStatus="task.status" />
     </div>
   </div>
 </template>
 
 
 <style scoped>
+.todo__task-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.todo__task-card {
+  border-radius: 8px;
+  background-color: #ffff;
+  padding: 40px 32px;
+  transition: all .5s ease-in-out;
+}
+
+.todo__task-card:hover {
+  opacity: 1;
+  box-shadow: 0 24px 32px -16px rgba(0, 95, 247, .15);
+}
 </style>
