@@ -27,10 +27,19 @@ const tasks = ref<any[]>([
         <p>{{ task.description }}</p>
       </div>
       <div class="todo__task-status-date">
-        <p>{{ task.dueDate }}</p>
+        <div class="todo__task-date">
+          <img width="20" height="20" src="@/assets/icon-calendar.svg" alt="calendar" />
+          <p>
+            {{ task.dueDate }}
+          </p>
+        </div>
         <div class="todo__task-status">
           {{ task.status }}
         </div>
+      </div>
+      <div class="todo__task-footer">
+        <img width="20" height="20" src="@/assets/icon-edit.svg" alt="edit" />
+        <img width="20" height="20" src="@/assets/icon-delete.svg" alt="delete" />
       </div>
     </div>
   </div>
@@ -70,10 +79,26 @@ const tasks = ref<any[]>([
   column-gap: 8px;
 }
 
+.todo__task-date {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+}
+
 .todo__task-status {
   padding: 8px;
   border-radius: 8px;
   background-color: #afd275;
+}
+
+.todo__task-footer {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 16px;
+}
+
+.todo__task-footer img {
+  cursor: pointer;
 }
 
 .todo__task-card:hover {
