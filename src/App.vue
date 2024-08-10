@@ -17,6 +17,6 @@ import TaskList from './components/TaskList.vue';
   margin: 60px 90px 0 90px;
 }
 body {
-  background-color: #f2faff;
+  background-color: #c2cad026;
 }
 </style>
