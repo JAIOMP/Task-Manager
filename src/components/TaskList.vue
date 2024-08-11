@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import UpdateTask from './UpdateTask.vue'
 
 const tasks = ref<any[]>([
     {
@@ -41,6 +42,13 @@ const tasks = ref<any[]>([
         <img width="20" height="20" src="@/assets/icon-edit.svg" alt="edit" />
         <img width="20" height="20" src="@/assets/icon-delete.svg" alt="delete" />
       </div>
+      <updateTask
+       :id="task.id" 
+       :title="task.title"
+       :description="task.description"
+       :dueDate="task.dueDate"
+       :status="task.status"
+      />
     </div>
   </div>
 </template>

@@ -19,4 +19,10 @@ import TaskList from './components/TaskList.vue';
 body {
   background-color: #c2cad026;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 </style>
