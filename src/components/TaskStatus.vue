@@ -12,17 +12,25 @@ const TASK_STATUS = {
 
 interface Props {
   taskStatus: Status
+  isFilter: boolean
+  setFilter: Function
 }
 
 const props = withDefaults(defineProps<Props>(), {
   taskStatus: 'Pending',
+  isFilter: false,
+  setFilter: () => {}
 })
 
 
 const selectedStatus = ref<Status>(props.taskStatus)
 
-function updateStatus(status: Status) {
-  selectedStatus.value = status
+function updateStatus(status: Status, event: Event | undefined) {
+  if (!props.isFilter) {
+    selectedStatus.value = status
+  } else {
+    props.setFilter(event)
+  }
 }
 
 </script>
@@ -33,7 +41,7 @@ function updateStatus(status: Status) {
         :label="label"
         :value="status" 
         :checked="selectedStatus === status as Status" 
-        :change="() => updateStatus(status as Status)" 
+        :change="(event?: Event) => updateStatus(status as Status, event)" 
       />
   </div>
 </template>

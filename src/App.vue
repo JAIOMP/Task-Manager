@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import TaskList from './components/TaskList.vue';
-import UpdateTask from './components/UpdateTask.vue'
+import TaskManager from './components/TaskManager.vue';
 </script>
 
 <template>
-  <TaskList />
-  <UpdateTask />
+  <TaskManager />
 </template>
 
 
