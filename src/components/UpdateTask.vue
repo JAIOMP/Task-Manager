@@ -3,6 +3,7 @@ import { ref, withDefaults, defineProps } from 'vue'
 import TaskStatus from './TaskStatus.vue'
 import TaskInput from './atoms/Input.vue'
 import TaskButton from './atoms/Button.vue'
+import Heading from './atoms/Heading.vue'
 
 type Status = 'Pending' | 'In progress' | 'Completed';
 
@@ -47,16 +48,18 @@ function handleSubmit() {
 }
 
 function closeModal() {
-
+  isVisible.value = false
 }
 
 </script>
 <template>
   <div v-if="isVisible" class="todo__task-update-form" @click.self="closeModal">
     <div class="todo__task-form-content">
-      <button class="todo__task-form-close-btn" @click="closeModal">&times;</button>
-      <h2>{{ modalTitle }}</h2>
+      <TaskButton class="todo__task-form-close-btn" value="&times;" color="--pale-sky" @click="closeModal"/>
+
       <form class="todo__task-form" @submit.prevent="handleSubmit">
+          <Heading tag="h2">{{ modalTitle }}</Heading>
+
           <TaskInput placeholder="Enter your task here..." id="title" :value="formData.title" required />
         
           <TaskInput placeholder="Enter your description here..." id="description" :value="formData.description" required />
@@ -87,6 +90,7 @@ function closeModal() {
 .todo__task-form {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   row-gap: 16px;
 }
 .todo__task-form-content {

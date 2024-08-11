@@ -7,7 +7,6 @@ interface Props {
   type: ButtonType
   value: string
   customClass: string
-  required: boolean
   color: string
 }
 
@@ -15,7 +14,6 @@ withDefaults(defineProps<Props>(), {
   type: 'button',
   value: '',
   customClass: '',
-  required: false,
   color: '--lush-green'
 })
 

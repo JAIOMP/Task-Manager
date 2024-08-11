@@ -20,23 +20,11 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="todo__task-input-container">
-    <input 
-      :type="type" 
-      :placeholder="placeholder" 
-      class="todo__task-input"
-      :value="value"
-      :class="customClass"
-    />
-  </div>
+  <input :type="type" :placeholder="placeholder" class="todo__task-input" :value="value" :class="customClass" />
 </template>
 
 
 <style>
-.todo__task-input-container {
-  position: relative;
-}
-
 .todo__task-input {
   width: 100%;
   padding: 10px;
