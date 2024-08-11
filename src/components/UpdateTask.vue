@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps } from 'vue'
 import TaskStatus from './TaskStatus.vue'
-import TaskInput from './TaskInput.vue'
+import TaskInput from './atoms/Input.vue'
+import TaskButton from './atoms/Button.vue'
 
 type Status = 'Pending' | 'In progress' | 'Completed';
 
@@ -55,15 +56,16 @@ function closeModal() {
     <div class="todo__task-form-content">
       <button class="todo__task-form-close-btn" @click="closeModal">&times;</button>
       <h2>{{ modalTitle }}</h2>
-      <form @submit.prevent="handleSubmit">
+      <form class="todo__task-form" @submit.prevent="handleSubmit">
           <TaskInput placeholder="Enter your task here..." id="title" :value="formData.title" required />
         
           <TaskInput placeholder="Enter your description here..." id="description" :value="formData.description" required />
         
           <TaskInput type="date" id="dueDate" :value="formData.dueDate" required />
         
-          <TaskStatus :taskStatus="formData.status"/>        
-        <button type="submit">Submit</button>
+          <TaskStatus :taskStatus="formData.status"/>
+
+          <TaskButton type="submit" value="Save" color="--earth-brown"/>
       </form>
     </div>
   </div>
@@ -82,6 +84,11 @@ function closeModal() {
   justify-content: center;
   align-items: center;
 }
+.todo__task-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
 .todo__task-form-content {
   background: white;
   padding: 20px;
@@ -98,15 +105,5 @@ function closeModal() {
   border: none;
   font-size: 24px;
   cursor: pointer;
-}
-.form-group {
-  margin-bottom: 15px;
-}
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
 }
 </style>

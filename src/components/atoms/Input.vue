@@ -34,7 +34,6 @@ withDefaults(defineProps<Props>(), {
 
 <style>
 .todo__task-input-container {
-  margin: 20px 0;
   position: relative;
 }
 
@@ -42,12 +41,12 @@ withDefaults(defineProps<Props>(), {
   width: 100%;
   padding: 10px;
   border: none;
-  border-bottom: 2px solid #c2b9b0;
+  border-bottom: 2px solid var(--sand-dune);
   outline: none;
   transition: border-color 0.3s ease;
 }
 
 .todo__task-input:focus {
-  border-bottom: 2px solid #7e685a;
+  border-bottom: 2px solid var(--earth-brown);
 }
 </style>

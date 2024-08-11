@@ -29,7 +29,7 @@ const tasks = ref<any[]>([
       </div>
       <div class="todo__task-status-date">
         <div class="todo__task-date">
-          <img width="20" height="20" src="@/assets/icon-calendar.svg" alt="calendar" />
+          <img width="20" height="20" src="@/assets/icons/icon-calendar.svg" alt="calendar" />
           <p>
             {{ task.dueDate }}
           </p>
@@ -39,8 +39,8 @@ const tasks = ref<any[]>([
         </div>
       </div>
       <div class="todo__task-footer">
-        <img width="20" height="20" src="@/assets/icon-edit.svg" alt="edit" />
-        <img width="20" height="20" src="@/assets/icon-delete.svg" alt="delete" />
+        <img width="20" height="20" src="@/assets/icons/icon-edit.svg" alt="edit" />
+        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" />
       </div>
       <updateTask
        :id="task.id" 
@@ -67,13 +67,13 @@ const tasks = ref<any[]>([
   row-gap: 16px;
   text-align: left;
   border-radius: 8px;
-  background-color: #ffff;
+  background-color: var(--white);
   padding: 40px 32px;
   transition: all .5s ease-in-out;
 }
 
 .todo__task-title-desc {
-   border-bottom: 1px solid #e6e6e6;
+   border-bottom: 1px solid var(--pale-sky);
 }
 
 .todo__task-title {
@@ -96,7 +96,7 @@ const tasks = ref<any[]>([
 .todo__task-status {
   padding: 8px;
   border-radius: 8px;
-  background-color: #afd275;
+  background-color: var(--lush-green);
 }
 
 .todo__task-footer {
