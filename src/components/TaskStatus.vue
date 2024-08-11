@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps } from 'vue';
+import Checkbox from './atoms/Checkbox.vue'
 
 type Status = 'Pending' | 'In progress' | 'Completed';
 
@@ -28,18 +29,11 @@ function updateStatus(status: Status) {
 
 <template>
   <div v-for="(label, status) in TASK_STATUS" :key="status" class="todo__task-status">
-    <label>
-      <input 
-        type="checkbox" 
+      <Checkbox
+        :label="label"
         :value="status" 
         :checked="selectedStatus === status as Status" 
-        @change="updateStatus(status as Status)" 
+        :change="() => updateStatus(status as Status)" 
       />
-      {{ label }}
-    </label>
   </div>
 </template>
-
-
-<style>
-</style>
