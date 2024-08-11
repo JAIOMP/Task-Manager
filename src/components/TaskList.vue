@@ -1,19 +1,12 @@
 <script setup lang="ts">
-import { Task } from '@/configs/types';
-import { withDefaults, defineProps } from 'vue'
+import { useTaskStore } from '@/stores/taskStore'
 
-interface Props {
-  tasks: Task[]
-}
-
-withDefaults(defineProps<Props>(), {
-  tasks: () => []
-})
+const taskStore = useTaskStore()
 
 </script>
 <template>
   <div class="todo__task-list">
-    <div v-for="task in tasks" :key="task.id" class="todo__task-card">
+    <div v-for="task in taskStore.tasks" :key="task.id" class="todo__task-card">
       <div class="todo__task-title-desc">
         <h2 class="todo__task-title">{{  task.title }}</h2>
         <p>{{ task.description }}</p>
@@ -31,7 +24,7 @@ withDefaults(defineProps<Props>(), {
       </div>
       <div class="todo__task-footer">
         <img width="20" height="20" src="@/assets/icons/icon-edit.svg" alt="edit" />
-        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" />
+        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" @click="taskStore.deleteTask(task.id as number)"/>
       </div>
     </div>
   </div>

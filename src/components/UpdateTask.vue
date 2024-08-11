@@ -5,6 +5,7 @@ import TaskStatus from './TaskStatus.vue'
 import TaskInput from './atoms/Input.vue'
 import TaskButton from './atoms/Button.vue'
 import Heading from './atoms/Heading.vue'
+import { useTaskStore } from '@/stores/taskStore';
 
 interface Props {
   id: number | null
@@ -24,22 +25,32 @@ const props = withDefaults(defineProps<Props>(), {
   modalTitle: 'Add'
 })
 
-const formData = ref<Task>({
-  id: props.id,
+const task = ref<Task>({
+  id: props.id || Date.now(),
   title: props.title,
   description: props.description,
   dueDate: props.dueDate,
   status: props.dueDate as Status,
 })
 
-const isVisible = ref<boolean>(true)
+const taskStore = useTaskStore();
+
+const isVisible = ref<boolean>(true) 
 
 function handleSubmit() {
-  
+  if (task.value.title && task.value.description) {
+    taskStore.addTask({ ...task.value, id: Date.now() });
+    task.value = { id: Date.now(), title: '', description: '', status: 'Pending', dueDate: '' }
+    closeModal()
+  }
 }
 
 function closeModal() {
   isVisible.value = false
+}
+
+function updateStatus(status: Status) {
+  task.value.status = status
 }
 
 </script>
@@ -51,13 +62,13 @@ function closeModal() {
       <form class="todo__task-form" @submit.prevent="handleSubmit">
           <Heading tag="h2">{{ modalTitle }}</Heading>
 
-          <TaskInput placeholder="Enter your task here..." id="title" :value="formData.title" required />
+          <TaskInput placeholder="Enter your task here..." id="title" v-model="task.title" required />
         
-          <TaskInput placeholder="Enter your description here..." id="description" :value="formData.description" required />
+          <TaskInput placeholder="Enter your description here..." id="description" v-model="task.description" required />
         
-          <TaskInput type="date" id="dueDate" :value="formData.dueDate" required />
+          <TaskInput type="date" id="dueDate" v-model="task.dueDate" required />
         
-          <TaskStatus :taskStatus="formData.status"/>
+          <TaskStatus :taskStatus="task.status" :updateStatus="updateStatus"/>
 
           <TaskButton type="submit" value="Save" color="--earth-brown"/>
       </form>

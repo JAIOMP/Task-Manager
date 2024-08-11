@@ -13,12 +13,14 @@ interface Props {
   taskStatus: Status
   isFilter: boolean
   setFilter: Function
+  updateStatus: Function
 }
 
 const props = withDefaults(defineProps<Props>(), {
   taskStatus: 'Pending',
   isFilter: false,
-  setFilter: () => {}
+  setFilter: () => {},
+  updateStatus: () => {}
 })
 
 
@@ -27,6 +29,7 @@ const selectedStatus = ref<Status>(props.taskStatus)
 function updateStatus(status: Status, event: Event | undefined) {
   if (!props.isFilter) {
     selectedStatus.value = status
+    props.updateStatus(status)
   } else {
     props.setFilter(event)
   }
@@ -39,8 +42,8 @@ function updateStatus(status: Status, event: Event | undefined) {
       <Checkbox
         :label="label"
         :value="label" 
-        :checked="selectedStatus === status as Status" 
-        :change="(event?: Event) => updateStatus(status as Status, event)" 
+        :checked="selectedStatus === label as Status" 
+        :change="(event?: Event) => updateStatus(label as Status, event)" 
       />
   </div>
 </template>

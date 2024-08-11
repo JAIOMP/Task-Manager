@@ -3,6 +3,8 @@ import { withDefaults, defineProps } from 'vue';
 
 interface Props {
   placeholder: string
+  modelValue: string
+  id: string
   type: string
   value: string
   customClass: string
@@ -11,6 +13,8 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   placeholder: '',
+  modelValue: '',
+  id: '',
   type: 'text',
   value: '',
   customClass: '',
@@ -20,7 +24,13 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <input :type="type" :placeholder="placeholder" class="todo__task-input" :value="value" :class="customClass" />
+  <input 
+    :type="type" 
+    :placeholder="placeholder" 
+    class="todo__task-input" 
+    :class="customClass" 
+    @input="$emit('update:modelValue', $event.target!.value)" 
+  />
 </template>
 
 
