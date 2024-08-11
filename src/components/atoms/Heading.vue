@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withDefaults, defineProps } from 'vue';
 
-type Tag = 'h1' | 'h2' | 'p'
+type Tag = 'h1' | 'h2' | 'h3' | 'p'
 
 interface Props {
   tag: Tag

@@ -1,22 +1,13 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps } from 'vue'
+import { Status, Task } from '@/configs/types';
 import TaskStatus from './TaskStatus.vue'
 import TaskInput from './atoms/Input.vue'
 import TaskButton from './atoms/Button.vue'
 import Heading from './atoms/Heading.vue'
 
-type Status = 'Pending' | 'In progress' | 'Completed';
-
-interface Task {
-  id: string | null
-  title: string
-  description: string
-  dueDate: string
-  status: Status
-}
-
 interface Props {
-  id: string | null
+  id: number | null
   title: string
   description: string
   dueDate: string
