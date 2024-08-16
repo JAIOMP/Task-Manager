@@ -1,12 +1,33 @@
 <script setup lang="ts">
+import { Task } from '@/configs/types'
 import { useTaskStore } from '@/stores/taskStore'
+import { computed } from 'vue';
 
-const taskStore = useTaskStore()
+const store = useTaskStore()
+
+const filteredTasks = computed(() => {
+  let filteredTasks: Task[] = []
+  const { filters, tasks } = store
+  let filtersName = Object.keys(filters)
+  
+  if(filtersName.length > 0) {
+    for(const filter of filtersName) {
+      for(const task of tasks) {
+        if(task.status === filter) {
+          filteredTasks.push(task)
+        }
+      }
+    }
+    return filteredTasks
+  }
+
+  return tasks
+})
 
 </script>
 <template>
   <div class="todo__task-list">
-    <div v-for="task in taskStore.tasks" :key="task.id" class="todo__task-card">
+    <div v-for="task in filteredTasks" :key="task.id" class="todo__task-card">
       <div class="todo__task-title-desc">
         <h2 class="todo__task-title">{{  task.title }}</h2>
         <p>{{ task.description }}</p>
@@ -24,7 +45,7 @@ const taskStore = useTaskStore()
       </div>
       <div class="todo__task-footer">
         <img width="20" height="20" src="@/assets/icons/icon-edit.svg" alt="edit" />
-        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" @click="taskStore.deleteTask(task.id as number)"/>
+        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" @click="store.deleteTask(task.id as number)"/>
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  taskStatus: 'Pending',
+  taskStatus: null,
   isFilter: false,
   setFilter: () => {},
   updateStatus: () => {}
