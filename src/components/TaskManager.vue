@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { provide, ref } from 'vue'
+import { Task } from '@/configs/types'
 import { useTaskStore } from '@/stores/taskStore'
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
@@ -6,13 +8,47 @@ import UpdateTask from './UpdateTask.vue'
 
 const store = useTaskStore()
 
+interface ModalTask extends Task {
+  modalTitle: 'Add' | 'Update'
+}
+
+const initModalTask: ModalTask = {
+  id: null,
+  title: '',
+  description: '',
+  dueDate: '',
+  status: 'Pending',
+  modalTitle: 'Add'
+}
+
+const updatedTask = ref<ModalTask>(initModalTask)
+
+provide('update-task', updateTask)
+
+function updateTask(task: Task | undefined) {
+  if(task) {
+    updatedTask.value = { ...task, modalTitle: 'Update' }
+    store.openAddTask = true
+  } else {
+    updatedTask.value = initModalTask
+  }
+}
+
 </script>
 
 <template>
   <div class="todo__task-manager">
     <TaskFilter :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
     <TaskList />
-    <UpdateTask v-if="store.openAddTask"/>
+    <UpdateTask 
+      v-if="store.openAddTask"
+      :id="updatedTask.id"
+      :title="updatedTask.title"
+      :description="updatedTask.description"
+      :dueDate="updatedTask.dueDate"
+      :status="updatedTask.status"
+      :modalTitle="updatedTask.modalTitle"
+    />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, withDefaults, defineProps } from 'vue'
+import { ref, withDefaults, defineProps, inject} from 'vue'
 import { Status, Task } from '@/configs/types'
 import TaskStatus from './TaskStatus.vue'
 import TaskInput from './atoms/Input.vue'
@@ -32,14 +32,25 @@ const task = ref<Task>({
   title: props.title,
   description: props.description,
   dueDate: props.dueDate,
-  status: props.dueDate as Status,
+  status: props.status as Status,
 })
 
-const taskStore = useTaskStore();
+const taskStore = useTaskStore()
+const handleEvent = inject<Function>('update-task')
+
+function updateTask() {
+  if(handleEvent) {
+    handleEvent()
+  }
+}
 
 function handleSubmit() {
   if (task.value.title && task.value.description) {
-    taskStore.addTask({ ...task.value, id: Date.now() });
+    if (props.modalTitle === 'Update') {
+      taskStore.updateTask(task.value);
+    } else {
+      taskStore.addTask({ ...task.value, id: Date.now() });
+    }
     task.value = { id: Date.now(), title: '', description: '', status: 'Pending', dueDate: '' }
     closeModal()
   }
@@ -47,6 +58,7 @@ function handleSubmit() {
 
 function closeModal() {
   store.openAddTask = false
+  updateTask()
 }
 
 function updateStatus(status: Status) {
@@ -62,11 +74,11 @@ function updateStatus(status: Status) {
       <form class="todo__task-form" @submit.prevent="handleSubmit">
           <Heading tag="h2">{{ modalTitle }}</Heading>
 
-          <TaskInput placeholder="Enter your task here..." id="title" v-model="task.title" required />
+          <TaskInput placeholder="Enter your task here..." id="title" :value="task.title" v-model="task.title" required />
         
-          <TaskInput placeholder="Enter your description here..." id="description" v-model="task.description" required />
+          <TaskInput placeholder="Enter your description here..." id="description" :value="task.description" v-model="task.description" required />
         
-          <TaskInput type="date" id="dueDate" v-model="task.dueDate" required />
+          <TaskInput type="date" id="dueDate" :value="task.dueDate" v-model="task.dueDate" required />
         
           <TaskStatus :taskStatus="task.status" :updateStatus="updateStatus"/>
 

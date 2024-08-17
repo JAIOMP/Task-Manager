@@ -20,6 +20,7 @@ export const useTaskStore = defineStore({
       if (index !== -1) {
         this.initTasks[index] = updatedTask;
       }
+      this.tasks = this.initTasks
     },
     deleteTask(taskId: number) {
       this.initTasks = this.initTasks.filter(task => task.id !== taskId);

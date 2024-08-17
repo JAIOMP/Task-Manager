@@ -28,6 +28,7 @@ withDefaults(defineProps<Props>(), {
     :type="type" 
     :placeholder="placeholder" 
     class="todo__task-input" 
+    :value="value"
     :class="customClass" 
     @input="$emit('update:modelValue', $event.target!.value)" 
   />

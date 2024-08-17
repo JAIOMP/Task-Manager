@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import { useTaskStore } from '@/stores/taskStore'
+import { inject } from 'vue';
+import { Task } from '@/configs/types'
 
 const store = useTaskStore()
+
+const handleEvent = inject<Function>('update-task')
+
+function updateTask(task: Task) {
+  if(handleEvent) {
+    handleEvent(task, 'Update')
+  }
+}
 
 </script>
 <template>
@@ -23,7 +33,7 @@ const store = useTaskStore()
         </div>
       </div>
       <div class="todo__task-footer">
-        <img width="20" height="20" src="@/assets/icons/icon-edit.svg" alt="edit" />
+        <img width="20" height="20" src="@/assets/icons/icon-edit.svg" alt="edit" @click="() => updateTask(task)"/>
         <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" @click="store.deleteTask(task.id as number)"/>
       </div>
     </div>
