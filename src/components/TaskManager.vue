@@ -2,6 +2,7 @@
 import { provide, ref } from 'vue'
 import { Task } from '@/configs/types'
 import { useTaskStore } from '@/stores/taskStore'
+import { DEFAULT_TASK } from '@/configs/constants'
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
 import UpdateTask from './UpdateTask.vue'
@@ -13,11 +14,7 @@ interface ModalTask extends Task {
 }
 
 const initModalTask: ModalTask = {
-  id: null,
-  title: '',
-  description: '',
-  dueDate: '',
-  status: 'Pending',
+  ...DEFAULT_TASK,
   modalTitle: 'Add'
 }
 
