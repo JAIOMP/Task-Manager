@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import TaskStatus from './TaskStatus.vue'
-import { useTaskStore } from '@/stores/taskStore'
+import { withDefaults, defineProps } from 'vue'
 import Heading from './atoms/Heading.vue'
+import Checkbox from './atoms/Checkbox.vue'
 
-const { setFilters } = useTaskStore()
+interface Props {
+  setFilters: () => void
+  sortTaskByDueDate: () => void
+}
+
+withDefaults(defineProps<Props>(), {
+  setFilters: () => {},
+  sortTaskByDueDate: () => {}
+})
 
 </script>
 
@@ -14,6 +23,9 @@ const { setFilters } = useTaskStore()
       :isFilter="true"
       :setFilter="setFilters"
     />
+
+    <Heading tag="h3">Sort by: </Heading>
+    <Checkbox label="Due date" value="Due date" :change="sortTaskByDueDate" />
   </div>
 </template>
 

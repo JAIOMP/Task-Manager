@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { withDefaults, defineProps } from 'vue';
+import { withDefaults, defineProps } from 'vue'
 
 type Tag = 'h1' | 'h2' | 'h3' | 'p'
 

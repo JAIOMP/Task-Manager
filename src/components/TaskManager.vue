@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import TaskList from './TaskList.vue';
-import TaskFilter from './TaskFilter.vue';
+import { useTaskStore } from '@/stores/taskStore'
+import TaskList from './TaskList.vue'
+import TaskFilter from './TaskFilter.vue'
 import UpdateTask from './UpdateTask.vue'
+
+const store = useTaskStore()
 
 </script>
 
 <template>
   <div class="todo__task-manager">
-    <TaskFilter />
+    <TaskFilter :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
     <TaskList />
     <UpdateTask />
   </div>
