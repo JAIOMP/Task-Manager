@@ -53,9 +53,13 @@ function updateTask(task: Task | undefined) {
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/media-queries';
+
 .todo__task-manager {
-  display: flex;
-  column-gap: 48px;
+  @include media('desktop') {   
+    display: flex;
+    column-gap: 48px;
+  }
 }
 </style>

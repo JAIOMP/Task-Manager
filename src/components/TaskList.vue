@@ -41,12 +41,22 @@ function updateTask(task: Task) {
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/media-queries';
+
 .todo__task-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   width: 100%;
+
+  @include media-range('mobile', 'desktop') {
+    grid-template-columns: repeat(2, 1fr);    
+  }
+
+  @include media-range('mobile', 'tablet') {
+    grid-template-columns: 1fr    
+  }
 }
 
 .todo__task-card {
@@ -71,6 +81,7 @@ function updateTask(task: Task) {
 .todo__task-status-date {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   column-gap: 8px;
 }

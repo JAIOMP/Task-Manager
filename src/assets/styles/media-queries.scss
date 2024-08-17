@@ -1,0 +1,35 @@
+
+// Define breakpoints
+$breakpoints: (
+  'mobile': 0px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'large-desktop': 1200px,
+);
+
+// Mixin to respond to specific breakpoints
+@mixin media($breakpoint) {
+  $min-width: map-get($breakpoints, $breakpoint);
+
+  @if $min-width != null {
+    @media (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+  }
+}
+
+// Mixin to handle range between breakpoints
+@mixin media-range($start, $end) {
+  $min-width: map-get($breakpoints, $start);
+  $max-width: map-get($breakpoints, $end);
+
+  @if $min-width != null and $max-width != null {
+    @media (min-width: $min-width) and (max-width: $max-width) {
+      @content;
+    }
+  } @else {
+    @warn "Start or end breakpoint `#{$start}` to `#{$end}` not found in $breakpoints map.";
+  }
+}

@@ -18,15 +18,20 @@ function addTask() {
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/media-queries';
+
 .task-manager__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  padding-left: 90px;
+  text-align: start;
+  padding: 16px 32px;
   margin-bottom: 24px;
-  background-color: var(--pale-sky);
+  
+  @include media('desktop') {
+    padding: 16px 90px;
+  }
 }
 .task-manager__header-title {
   color: var(--coral-blush);

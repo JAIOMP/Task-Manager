@@ -9,7 +9,9 @@ import Header from './components/Header.vue';
 </template>
 
 
-<style>
+<style lang="scss">
+@import '@/assets/styles/media-queries';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +25,11 @@ body {
 }
 
 .task-manager {
-  margin: 0 90px;
+  margin: 0 96px;
+
+  @include media-range('mobile', 'desktop') {
+    margin: 0 32px; 
+  }
 }
 
 *,

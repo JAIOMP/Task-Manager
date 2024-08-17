@@ -18,11 +18,13 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="todo__task-filter">
-    <Heading tag="h3">Select status: </Heading>
-    <TaskStatus 
-      :isFilter="true"
-      :setFilter="setFilters"
-    />
+    <div class="todo__task-filter-status">
+      <Heading tag="h3">Select status: </Heading>
+      <TaskStatus 
+        :isFilter="true"
+        :setFilter="setFilters"
+      />
+    </div>
 
     <div class="todo__task-filter-sort">
       <Heading tag="h3">Sort by: </Heading>
@@ -31,14 +33,26 @@ withDefaults(defineProps<Props>(), {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/media-queries';
+
 .todo__task-filter {
-  width: 176px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 32px;
+
+  @include media('desktop') {
+    width: 176px;
+    flex-direction: column;
+  }
+}
+.todo__task-filter-status {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .todo__task-filter-sort {
-  margin-top: 16px;
+  text-align: start;
 }
 </style>

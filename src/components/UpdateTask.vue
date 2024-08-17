@@ -89,7 +89,8 @@ function updateStatus(status: Status) {
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/media-queries';
 .todo__task-update-form {
   position: fixed;
   top: 0;
@@ -114,6 +115,11 @@ function updateStatus(status: Status) {
   max-width: 500px;
   width: 100%;
   position: relative;
+
+  @include media-range('mobile', 'tablet') {
+    height: 100%;    
+    border-radius: 0;
+  }
 }
 .todo__task-form-close-btn {
   position: absolute;
