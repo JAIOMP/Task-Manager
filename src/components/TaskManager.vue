@@ -12,7 +12,7 @@ const store = useTaskStore()
   <div class="todo__task-manager">
     <TaskFilter :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
     <TaskList />
-    <UpdateTask />
+    <UpdateTask v-if="store.openAddTask"/>
   </div>
 </template>
 

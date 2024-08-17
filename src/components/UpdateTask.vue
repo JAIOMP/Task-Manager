@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps } from 'vue'
-import { Status, Task } from '@/configs/types';
+import { Status, Task } from '@/configs/types'
 import TaskStatus from './TaskStatus.vue'
 import TaskInput from './atoms/Input.vue'
 import TaskButton from './atoms/Button.vue'
 import Heading from './atoms/Heading.vue'
-import { useTaskStore } from '@/stores/taskStore';
+import { useTaskStore } from '@/stores/taskStore'
 
 interface Props {
   id: number | null
@@ -25,6 +25,8 @@ const props = withDefaults(defineProps<Props>(), {
   modalTitle: 'Add'
 })
 
+const store = useTaskStore()
+
 const task = ref<Task>({
   id: props.id || Date.now(),
   title: props.title,
@@ -35,8 +37,6 @@ const task = ref<Task>({
 
 const taskStore = useTaskStore();
 
-const isVisible = ref<boolean>(true) 
-
 function handleSubmit() {
   if (task.value.title && task.value.description) {
     taskStore.addTask({ ...task.value, id: Date.now() });
@@ -46,7 +46,7 @@ function handleSubmit() {
 }
 
 function closeModal() {
-  isVisible.value = false
+  store.openAddTask = false
 }
 
 function updateStatus(status: Status) {
@@ -55,7 +55,7 @@ function updateStatus(status: Status) {
 
 </script>
 <template>
-  <div v-if="isVisible" class="todo__task-update-form" @click.self="closeModal">
+  <div class="todo__task-update-form" @click.self="closeModal">
     <div class="todo__task-form-content">
       <TaskButton class="todo__task-form-close-btn" value="&times;" color="--pale-sky" @click="closeModal"/>
 

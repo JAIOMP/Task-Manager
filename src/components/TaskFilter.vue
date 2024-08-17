@@ -24,8 +24,10 @@ withDefaults(defineProps<Props>(), {
       :setFilter="setFilters"
     />
 
-    <Heading tag="h3">Sort by: </Heading>
-    <Checkbox label="Due date" value="Due date" :change="sortTaskByDueDate" />
+    <div class="todo__task-filter-sort">
+      <Heading tag="h3">Sort by: </Heading>
+      <Checkbox label="Due date" value="Due date" :change="sortTaskByDueDate" />
+    </div>
   </div>
 </template>
 
@@ -35,5 +37,8 @@ withDefaults(defineProps<Props>(), {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+.todo__task-filter-sort {
+  margin-top: 16px;
 }
 </style>

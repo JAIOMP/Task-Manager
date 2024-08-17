@@ -7,7 +7,8 @@ export const useTaskStore = defineStore({
     initTasks: [] as Task[],
     tasks: [] as Task[],
     filters: {} as { [key: string]: boolean },
-    isSortedByDueDate: false as boolean
+    isSortedByDueDate: false as boolean,
+    openAddTask: false as boolean
   }),
   actions: {
     addTask(task: Task) {

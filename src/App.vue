@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import TaskManager from './components/TaskManager.vue';
+import Header from './components/Header.vue';
 </script>
 
 <template>
-  <TaskManager />
+  <Header />
+  <TaskManager class="task-manager"/>
 </template>
 
 
@@ -14,10 +16,14 @@ import TaskManager from './components/TaskManager.vue';
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 60px 90px 0 90px;
 }
 body {
   background-color: #c2cad026;
+  margin: 0;
+}
+
+.task-manager {
+  margin: 0 90px;
 }
 
 *,
