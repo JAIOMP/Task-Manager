@@ -30,6 +30,7 @@
     "@storybook/vue3-vite": "^8.2.8",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "@vitejs/plugin-vue": "^5.1.2",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",

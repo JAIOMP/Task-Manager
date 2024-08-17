@@ -1,4 +1,5 @@
 /** @type { import('@storybook/vue3').Preview } */
+import '../src/assets/styles/variables.css'
 
 import type { Preview } from '@storybook/vue3';
 
