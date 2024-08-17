@@ -71,9 +71,9 @@ function updateStatus(status: Status) {
       <form class="todo__task-form" @submit.prevent="handleSubmit">
           <Heading tag="h2">{{ modalTitle }}</Heading>
 
-          <TaskInput placeholder="Enter your task here..." id="title" :value="task.title" v-model="task.title" required />
+          <TaskInput placeholder="Enter your task title here..." id="title" :value="task.title" v-model="task.title" required />
         
-          <TaskInput placeholder="Enter your description here..." id="description" :value="task.description" v-model="task.description" required />
+          <TaskInput placeholder="Enter your task description here..." id="description" :value="task.description" v-model="task.description" required />
         
           <TaskInput type="date" id="dueDate" :value="task.dueDate" v-model="task.dueDate" required />
         
