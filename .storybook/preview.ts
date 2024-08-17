@@ -5,6 +5,12 @@ import type { Preview } from '@storybook/vue3';
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: 'light',
+      values: [
+        { name: 'light', value: '#c2cad026' }
+      ]
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
