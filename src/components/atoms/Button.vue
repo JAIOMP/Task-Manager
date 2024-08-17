@@ -4,10 +4,10 @@ import { withDefaults, defineProps } from 'vue'
 type ButtonType = 'button' | 'submit' | 'reset'
 
 interface Props {
-  type: ButtonType
+  type?: ButtonType
   value: string
-  customClass: string
-  color: string
+  customClass?: string
+  color?: string
 }
 
 withDefaults(defineProps<Props>(), {
