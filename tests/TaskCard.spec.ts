@@ -16,10 +16,14 @@ describe('TaskCard.vue', () => {
   };
 
   it('renders task details correctly', () => {
+    const mockHandleEvent = vi.fn()
     const wrapper = mount(TaskCard, {
       props: { task },
       global: {
         plugins: [createTestingPinia()],
+        provide: {
+          'update-task': mockHandleEvent,
+        },
       },
     });
 
@@ -47,10 +51,14 @@ describe('TaskCard.vue', () => {
   });
 
   it('calls deleteTask method when delete button is clicked', async () => {
+    const mockHandleEvent = vi.fn()
     const wrapper = mount(TaskCard, {
       props: { task },
       global: {
         plugins: [createTestingPinia()],
+        provide: {
+          'update-task': mockHandleEvent,
+        },
       },
     });
 

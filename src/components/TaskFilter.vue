@@ -5,8 +5,8 @@ import Heading from './atoms/Heading.vue'
 import Checkbox from './atoms/Checkbox.vue'
 
 interface Props {
-  setFilters: () => void
-  sortTaskByDueDate: () => void
+  setFilters?: () => void
+  sortTaskByDueDate?: () => void
 }
 
 withDefaults(defineProps<Props>(), {
