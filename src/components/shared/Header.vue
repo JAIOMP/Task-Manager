@@ -13,7 +13,7 @@ function addTask(): void {
 <template>
     <header class="task-manager__header">
       <h1 class="task-manager__header-title">Task Manager</h1>
-      <TaskButton class="task-manager__header-button" value="Add Task" color="--earth-brown" @click="addTask"/>
+      <TaskButton class="task-manager__header-button" value="Add Task" @click="addTask"/>
     </header>
 </template>
 
@@ -32,8 +32,5 @@ function addTask(): void {
   @include media('desktop') {
     padding: 16px 90px;
   }
-}
-.task-manager__header-title {
-  color: var(--coral-blush);
 }
 </style>

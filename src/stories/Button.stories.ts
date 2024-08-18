@@ -30,7 +30,6 @@ Default.args = {
   type: 'button',
   value: 'Default Button',
   customClass: '',
-  color: '--lush-green',
 };
 
 export const SubmitButton = Template.bind({});
@@ -38,7 +37,6 @@ SubmitButton.args = {
   type: 'submit',
   value: 'Submit',
   customClass: '',
-  color: '--earth-brown',
 };
 
 export const CustomButton = Template.bind({});
@@ -46,7 +44,6 @@ CustomButton.args = {
   type: 'button',
   value: 'Custom Styled Button',
   customClass: 'custom-button-class',
-  color: '--pale-sky',
 };
 
 export const ResetButton = Template.bind({});
@@ -54,5 +51,4 @@ ResetButton.args = {
   type: 'reset',
   value: 'Reset',
   customClass: '',
-  color: '--coral-blush',
 };

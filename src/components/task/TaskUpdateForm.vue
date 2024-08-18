@@ -81,7 +81,7 @@ function updateStatus(status: Status): void {
 <template>
   <div class="todo__task-update-form" @click.self="closeModal">
     <div class="todo__task-form-content">
-      <TaskButton customClass="todo__task-form-cross" class="todo__task-form-close-btn" value="&times;" color="--pale-sky" @click="closeModal" />
+      <TaskButton customClass="todo__task-form-cross" class="todo__task-form-close-btn" value="&times;" @click="closeModal" />
 
       <form class="todo__task-form" @submit.prevent="handleSubmit">
         <Heading tag="h2">{{ modalTitle }}</Heading>
@@ -113,7 +113,7 @@ function updateStatus(status: Status): void {
 
         <TaskStatus :taskStatus="task.status" :updateStatus="updateStatus" />
 
-        <TaskButton type="submit" value="Save" color="--earth-brown" />
+        <TaskButton type="submit" value="Save" />
       </form>
     </div>
   </div>

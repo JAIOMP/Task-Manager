@@ -8,6 +8,4 @@ export interface Task {
   dueDate: string;
 }
 
-export type DesignSystemColors = '--coral-blush' | '--pale-sky' | '--sand-dune' | '--earth-brown' | '--lush-green' | '--white';
-
 export type ButtonType = 'button' | 'submit' | 'reset'; 

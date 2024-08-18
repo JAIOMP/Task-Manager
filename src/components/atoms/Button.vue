@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import { withDefaults, defineProps } from 'vue';
-import { ButtonType, DesignSystemColors } from '@/configs/types';
+import { ButtonType } from '@/configs/types';
 
 interface Props {
   type?: ButtonType;
   value: string;
   customClass?: string;
-  color?: DesignSystemColors;
 }
 
 withDefaults(defineProps<Props>(), {
   type: 'button',
   value: '',
   customClass: '',
-  color: '--lush-green'
 })
 
 </script>
@@ -24,7 +22,6 @@ withDefaults(defineProps<Props>(), {
       :type="type" 
       class="todo__task-button"
       :class="customClass"
-      :style="{'--btnColor': `var(${color})`}"
     >
     {{ value }}
     </button>
