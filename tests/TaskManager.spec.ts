@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
-import TaskManager from '../src/components/TaskManager.vue'; 
-import TaskFilter from '../src/components/TaskFilter.vue';
-import TaskList from '../src/components/TaskList.vue';
-import TaskUpdateForm from '../src/components/TaskUpdateForm.vue';
+import TaskManager from '../src/components/task/TaskManager.vue'; 
+import TaskFilter from '../src/components/task/TaskFilter.vue';
+import TaskList from '../src/components/task/TaskList.vue';
+import TaskUpdateForm from '../src/components/task/TaskUpdateForm.vue';
 import { Task } from '../src/configs/types';
 
 describe('TaskManager.vue', () => {

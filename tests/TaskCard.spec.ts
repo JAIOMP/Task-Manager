@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
-import TaskCard from '../src/components/TaskCard.vue';
+import TaskCard from '../src/components/task/TaskCard.vue';
 import { useTaskStore } from '../src/stores/taskStore';
 import { Task } from '../src/configs/types';
 import { DEFAULT_TASK } from '../src/configs/constants';

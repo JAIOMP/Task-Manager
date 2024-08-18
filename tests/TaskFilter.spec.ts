@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
-import TaskFilter from '../src/components/TaskFilter.vue';
-import TaskStatus from '../src/components/TaskStatus.vue';
+import TaskFilter from '../src/components/task/TaskFilter.vue';
+import TaskStatus from '../src/components/task/TaskStatus.vue';
 import Checkbox from '../src/components/atoms/Checkbox.vue';
 
 describe('TaskFilter.vue', () => {

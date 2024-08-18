@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useTaskStore } from '../stores/taskStore'
-import TaskButton from './atoms/Button.vue'
+import { useTaskStore } from '../../stores/taskStore'
+import TaskButton from '../atoms/Button.vue'
 
 const store = useTaskStore()
 

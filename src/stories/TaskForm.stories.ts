@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { defineComponent } from 'vue';
 import { setActivePinia, createPinia } from 'pinia';
-import TaskForm from '../components/TaskUpdateForm.vue'; // Update with your actual path
+import TaskForm from '../components/task/TaskUpdateForm.vue'; // Update with your actual path
 import { useTaskStore } from '../stores/taskStore';
 import { Status } from '../configs/types';
 

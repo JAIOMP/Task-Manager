@@ -1,6 +1,5 @@
 import { createPinia, setActivePinia } from 'pinia';
-import { createApp } from 'vue';
-import TaskList from '../components/TaskList.vue';
+import TaskList from '../components/task/TaskList.vue';
 import { useTaskStore } from '../stores/taskStore';
 
 export default {

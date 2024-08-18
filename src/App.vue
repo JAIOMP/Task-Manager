@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TaskManager from './components/TaskManager.vue';
-import Header from './components/Header.vue';
+import TaskManager from './components/task/TaskManager.vue';
+import Header from './components/shared/Header.vue';
 </script>
 
 <template>

@@ -1,9 +1,9 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
-import TaskUpdateForm from '../src/components/TaskUpdateForm.vue'; 
+import TaskUpdateForm from '../src/components/task/TaskUpdateForm.vue'; 
 import TaskInput from '../src/components/atoms/Input.vue';
 import TaskButton from '../src/components/atoms/Button.vue';
-import TaskStatus from '../src/components/TaskStatus.vue';
+import TaskStatus from '../src/components/task/TaskStatus.vue';
 import { createTestingPinia } from '@pinia/testing';
 import { useTaskStore } from '../src/stores/taskStore';
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
-import { Task } from '@/configs/types'
-import { useTaskStore } from '@/stores/taskStore'
-import { DEFAULT_TASK } from '@/configs/constants'
+import { Task } from '../../configs/types'
+import { useTaskStore } from '../../stores/taskStore'
+import { DEFAULT_TASK } from '../../configs/constants'
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
 import TaskUpdateForm from './TaskUpdateForm.vue'

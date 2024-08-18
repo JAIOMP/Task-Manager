@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps } from 'vue';
-import Checkbox from './atoms/Checkbox.vue'
-import { Status } from '@/configs/types';
+import Checkbox from '../atoms/Checkbox.vue'
+import { Status } from '../../configs/types';
 
 const TASK_STATUS = {
   pending: 'Pending',

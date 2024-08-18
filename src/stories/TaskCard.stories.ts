@@ -1,5 +1,5 @@
 // src/stories/TaskCard.stories.ts
-import TaskCard from '../components/TaskCard.vue';
+import TaskCard from '../components/task/TaskCard.vue';
 import { Task } from '../configs/types';
 import { DEFAULT_TASK } from '../configs/constants';
 

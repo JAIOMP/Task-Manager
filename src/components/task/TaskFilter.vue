@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import TaskStatus from './TaskStatus.vue'
 import { withDefaults, defineProps } from 'vue'
-import Heading from './atoms/Heading.vue'
-import Checkbox from './atoms/Checkbox.vue'
+import Heading from '../atoms/Heading.vue'
+import Checkbox from '../atoms/Checkbox.vue'
 
 interface Props {
   setFilters?: () => void

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
-import TaskStatus from '../src/components/TaskStatus.vue';
+import TaskStatus from '../src/components/task/TaskStatus.vue';
 import Checkbox from '../src/components/atoms/Checkbox.vue';
 import { Status } from '../src/configs/types';
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps, inject} from 'vue'
-import { Status, Task } from '@/configs/types'
-import { DEFAULT_TASK } from '@/configs/constants'
+import { Status, Task } from '../../configs/types'
+import { DEFAULT_TASK } from '../../configs/constants'
 import TaskStatus from './TaskStatus.vue'
-import TaskInput from './atoms/Input.vue'
-import TaskButton from './atoms/Button.vue'
-import Heading from './atoms/Heading.vue'
-import { useTaskStore } from '@/stores/taskStore'
+import TaskInput from '../atoms/Input.vue'
+import TaskButton from '../atoms/Button.vue'
+import Heading from '../atoms/Heading.vue'
+import { useTaskStore } from '../../stores/taskStore'
 
 interface Props {
   id?: number | null

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { Task } from '../configs/types'
-import { DEFAULT_TASK } from '../configs/constants'
+import { Task } from '../../configs/types'
+import { DEFAULT_TASK } from '../../configs/constants'
 import { withDefaults, defineProps } from 'vue'
-import { useTaskStore } from '../stores/taskStore'
+import { useTaskStore } from '../../stores/taskStore'
 
 interface Props {
   task: Task

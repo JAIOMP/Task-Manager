@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
-import TaskList from '../src/components/TaskList.vue';
-import TaskCard from '../src/components/TaskCard.vue';
+import TaskList from '../src/components/task/TaskList.vue';
+import TaskCard from '../src/components/task/TaskCard.vue';
 
 describe('TaskList.vue', () => {
   it('renders the component correctly', () => {
