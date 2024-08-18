@@ -36,11 +36,11 @@ Default.args = {
   required: false,
 };
 
-export const PasswordInput = Template.bind({});
-PasswordInput.args = {
-  placeholder: 'Enter your password...',
+export const DateInput = Template.bind({});
+DateInput.args = {
+  placeholder: 'Enter due date...',
   modelValue: '',
-  id: 'password-input',
+  id: 'date-input',
   type: 'date',
   value: '23-04-2024',
   customClass: '',

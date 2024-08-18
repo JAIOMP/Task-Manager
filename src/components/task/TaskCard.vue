@@ -54,6 +54,7 @@ function updateTask(task: Task): void {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  max-width: 480px;
   text-align: left;
   border-radius: 8px;
   background-color: var(--white);

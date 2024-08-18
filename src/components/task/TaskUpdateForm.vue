@@ -40,8 +40,8 @@ const formError = ref<string | null>(null)
 function validateForm(): boolean {
   let isValid = true;
 
-  if (!task.value.title || !task.value.dueDate || !task.value.status) {
-    formError.value = 'Oops! You missed a spot! Don’t forget the Title, Due Date, and Status!'
+  if (!task.value.title || !task.value.description) {
+    formError.value = 'Oops! You missed a spot! Don’t forget the Title, Description!'
     isValid = false
   } else {
     formError.value = null

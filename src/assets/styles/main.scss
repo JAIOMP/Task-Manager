@@ -66,6 +66,7 @@ button {
   color: $error-color;
   font-size: $font-size-small;
   margin-top: calc($padding-base / 4);
+  text-align: start;
 }
 
 input {
