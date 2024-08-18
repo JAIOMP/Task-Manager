@@ -25,6 +25,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <input 
+    :id="id"
     :type="type" 
     :placeholder="placeholder" 
     class="todo__task-input" 

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { defineComponent } from 'vue';
 import { setActivePinia, createPinia } from 'pinia';
-import TaskForm from '../components/UpdateTask.vue'; // Update with your actual path
+import TaskForm from '../components/TaskUpdateForm.vue'; // Update with your actual path
 import { useTaskStore } from '../stores/taskStore';
 import { Status } from '../configs/types';
 
@@ -64,8 +64,8 @@ AddTask.args = {
   modalTitle: 'Add',
 };
 
-export const UpdateTask = Template.bind({});
-UpdateTask.args = {
+export const TaskUpdateForm = Template.bind({});
+TaskUpdateForm.args = {
   id: 1,
   title: 'Updated Task',
   description: 'This is an updated task description',

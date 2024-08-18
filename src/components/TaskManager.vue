@@ -5,7 +5,7 @@ import { useTaskStore } from '@/stores/taskStore'
 import { DEFAULT_TASK } from '@/configs/constants'
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
-import UpdateTask from './UpdateTask.vue'
+import TaskUpdateForm from './TaskUpdateForm.vue'
 
 const store = useTaskStore()
 
@@ -37,7 +37,7 @@ function updateTask(task: Task | undefined) {
   <div class="todo__task-manager">
     <TaskFilter :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
     <TaskList />
-    <UpdateTask 
+    <TaskUpdateForm 
       v-if="store.openAddTask"
       :id="updatedTask.id"
       :title="updatedTask.title"

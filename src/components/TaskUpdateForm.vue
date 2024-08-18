@@ -9,12 +9,12 @@ import Heading from './atoms/Heading.vue'
 import { useTaskStore } from '@/stores/taskStore'
 
 interface Props {
-  id: number | null
-  title: string
-  description: string
-  dueDate: string
-  status: Status
-  modalTitle: string
+  id?: number | null
+  title?: string
+  description?: string
+  dueDate?: string
+  status?: Status
+  modalTitle?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
