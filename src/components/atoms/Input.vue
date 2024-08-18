@@ -2,12 +2,12 @@
 import { withDefaults, defineProps } from 'vue'
 
 interface Props {
-  placeholder: string
+  placeholder?: string
   modelValue: string
   id: string
-  type: string
+  type?: string
   value: string
-  customClass: string
+  customClass?: string
   required: boolean
 }
 
