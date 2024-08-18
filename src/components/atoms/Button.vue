@@ -30,19 +30,3 @@ withDefaults(defineProps<Props>(), {
     </button>
   </div>
 </template>
-
-<style>
-.todo__task-button {
-  border: none;
-  border-radius: 16px;
-  padding: 10px 20px;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  background-color: var(--btnColor);
-  transition: background-color 0.3s ease;
-}
-.todo__task-button:hover {
-  opacity: 0.8;
-}
-</style>

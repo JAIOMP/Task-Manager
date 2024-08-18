@@ -35,6 +35,21 @@ const task = ref<Task>({
 const taskStore = useTaskStore()
 const handleEvent = inject<Function>('update-task')
 
+const formError = ref<string | null>(null)
+
+function validateForm(): boolean {
+  let isValid = true;
+
+  if (!task.value.title || !task.value.dueDate || !task.value.status) {
+    formError.value = 'Oops! You missed a spot! Don’t forget the Title, Due Date, and Status!'
+    isValid = false
+  } else {
+    formError.value = null
+  }
+
+  return isValid
+}
+
 function updateTask(): void {
   if(handleEvent) {
     handleEvent()
@@ -42,7 +57,7 @@ function updateTask(): void {
 }
 
 function handleSubmit(): void {
-  if (task.value.title && task.value.description) {
+  if (validateForm()) {
     if (props.modalTitle === 'Update') {
       taskStore.updateTask(task.value);
     } else {
@@ -66,28 +81,47 @@ function updateStatus(status: Status): void {
 <template>
   <div class="todo__task-update-form" @click.self="closeModal">
     <div class="todo__task-form-content">
-      <TaskButton class="todo__task-form-close-btn" value="&times;" color="--pale-sky" @click="closeModal"/>
+      <TaskButton customClass="todo__task-form-cross" class="todo__task-form-close-btn" value="&times;" color="--pale-sky" @click="closeModal" />
 
       <form class="todo__task-form" @submit.prevent="handleSubmit">
-          <Heading tag="h2">{{ modalTitle }}</Heading>
+        <Heading tag="h2">{{ modalTitle }}</Heading>
 
-          <TaskInput placeholder="Enter your task title here..." id="title" :value="task.title" v-model="task.title" required />
-        
-          <TaskInput placeholder="Enter your task description here..." id="description" :value="task.description" v-model="task.description" required />
-        
-          <TaskInput type="date" id="dueDate" :value="task.dueDate" v-model="task.dueDate" required />
-        
-          <TaskStatus :taskStatus="task.status" :updateStatus="updateStatus"/>
+        <TaskInput 
+          placeholder="Enter your task title here..." 
+          id="title" 
+          :value="task.title" 
+          v-model="task.title"
+          required 
+        />
 
-          <TaskButton type="submit" value="Save" color="--earth-brown"/>
+        <TaskInput 
+          placeholder="Enter your task description here..." 
+          id="description" 
+          :value="task.description"
+          v-model="task.description"
+        />
+
+        <TaskInput 
+          type="date" 
+          id="dueDate" 
+          :value="task.dueDate" 
+          v-model="task.dueDate" 
+          required 
+        />
+
+        <Heading v-if="formError" tag="p" class="error-message"> {{ formError }} </Heading>
+
+        <TaskStatus :taskStatus="task.status" :updateStatus="updateStatus" />
+
+        <TaskButton type="submit" value="Save" color="--earth-brown" />
       </form>
     </div>
   </div>
 </template>
 
 
-<style lang="scss" scoped>
-@import '@/assets/styles/media-queries';
+<style lang="scss">
+@import '@/assets/styles/main.scss';
 .todo__task-update-form {
   position: fixed;
   top: 0;
@@ -107,7 +141,7 @@ function updateStatus(status: Status): void {
 }
 .todo__task-form-content {
   background: white;
-  padding: 20px;
+  padding: 32px;
   border-radius: 8px;
   max-width: 500px;
   width: 100%;
@@ -118,10 +152,20 @@ function updateStatus(status: Status): void {
     border-radius: 0;
   }
 }
+.todo__task-form-cross {
+  font-size: 32px;
+  background-color: $card-bg-color;
+  color: $muted-text-color;
+  transition: transform 0.4s ease;
+}
+.todo__task-form-cross:hover {
+  background-color: $card-bg-color;
+  transform: scale(1.2);
+}
 .todo__task-form-close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 32px;
+  right: 32px;
   background: none;
   border: none;
   font-size: 24px;

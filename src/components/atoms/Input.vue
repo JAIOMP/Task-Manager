@@ -7,6 +7,7 @@ interface Props {
   id: string
   type?: string
   value: string
+  errorMessage: string | null
   customClass?: string
   required: boolean
 }
@@ -18,6 +19,7 @@ withDefaults(defineProps<Props>(), {
   type: 'text',
   value: '',
   customClass: '',
+  errorMessage: null,
   required: false
 })
 
@@ -39,14 +41,7 @@ withDefaults(defineProps<Props>(), {
 <style>
 .todo__task-input {
   width: 100%;
-  padding: 10px;
-  border: none;
-  border-bottom: 2px solid var(--sand-dune);
   outline: none;
   transition: border-color 0.3s ease;
-}
-
-.todo__task-input:focus {
-  border-bottom: 2px solid var(--earth-brown);
 }
 </style>

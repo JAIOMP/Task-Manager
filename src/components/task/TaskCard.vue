@@ -37,7 +37,7 @@ function updateTask(task: Task): void {
             {{ task.dueDate }}
           </p>
         </div>
-        <div class="todo__task-status">
+        <div class="todo__task-status" :class="['status-label', task.status?.replace(' ', '-').toLowerCase()]">
           {{ task.status }}
         </div>
       </div>
@@ -97,7 +97,12 @@ function updateTask(task: Task): void {
 
 .todo__task-footer img {
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
+
+.todo__task-footer img:hover {
+  transform: scale(1.3);
+} 
 
 .todo__task-card:hover {
   opacity: 1;

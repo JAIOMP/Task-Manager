@@ -23,7 +23,13 @@ withDefaults(defineProps<Props>(), {
       :value="value" 
       :checked="checked" 
       @change="change" 
+      class="todo_task-checkbox"
     />
     {{ label }}
   </label>
 </template>
+<style scoped>
+.todo_task-checkbox {
+  cursor: pointer;
+}
+</style>
