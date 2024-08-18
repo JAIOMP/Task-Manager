@@ -31,7 +31,7 @@ withDefaults(defineProps<Props>(), {
     class="todo__task-input" 
     :value="value"
     :class="customClass" 
-    @input="$emit('update:modelValue', $event.target!.value)" 
+    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" 
   />
 </template>
 

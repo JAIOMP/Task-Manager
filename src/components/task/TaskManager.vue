@@ -22,7 +22,7 @@ const updatedTask = ref<ModalTask>(initModalTask)
 
 provide('update-task', updateTask)
 
-function updateTask(task: Task | undefined) {
+function updateTask(task: Task | undefined): void {
   if(task) {
     updatedTask.value = { ...task, modalTitle: 'Update' }
     store.openAddTask = true

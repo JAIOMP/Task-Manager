@@ -12,7 +12,6 @@ withDefaults(defineProps<Props>(), {
   change: () => {},
   value: '',
   checked: false,
-  label: ''
 })
 
 </script>

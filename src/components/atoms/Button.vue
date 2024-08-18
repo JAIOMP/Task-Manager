@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { withDefaults, defineProps } from 'vue'
-
-type ButtonType = 'button' | 'submit' | 'reset'
+import { withDefaults, defineProps } from 'vue';
+import { ButtonType, DesignSystemColors } from '@/configs/types';
 
 interface Props {
-  type?: ButtonType
-  value: string
-  customClass?: string
-  color?: string
+  type?: ButtonType;
+  value: string;
+  customClass?: string;
+  color?: DesignSystemColors;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -31,7 +30,6 @@ withDefaults(defineProps<Props>(), {
     </button>
   </div>
 </template>
-
 
 <style>
 .todo__task-button {

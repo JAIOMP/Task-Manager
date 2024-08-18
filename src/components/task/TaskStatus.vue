@@ -3,7 +3,7 @@ import { ref, withDefaults, defineProps } from 'vue';
 import Checkbox from '../atoms/Checkbox.vue'
 import { Status } from '../../configs/types';
 
-const TASK_STATUS = {
+const TASK_STATUS: Record<string, string> = {
   pending: 'Pending',
   inProgress: 'In progress',
   completed: 'Completed'
@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const selectedStatus = ref<Status>(props.taskStatus)
 
-function updateStatus(status: Status, event: Event | undefined) {
+function updateStatus(status: Status, event?: Event): void {
   if (!props.isFilter) {
     selectedStatus.value = status
     props.updateStatus(status)

@@ -16,7 +16,7 @@ withDefaults(defineProps<Props>(), {
 const store = useTaskStore()
 const handleEvent = inject<Function>('update-task')
 
-function updateTask(task: Task) {
+function updateTask(task: Task): void {
   if(handleEvent) {
     handleEvent(task, 'Update')
   }

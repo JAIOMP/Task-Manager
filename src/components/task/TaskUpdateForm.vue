@@ -35,13 +35,13 @@ const task = ref<Task>({
 const taskStore = useTaskStore()
 const handleEvent = inject<Function>('update-task')
 
-function updateTask() {
+function updateTask(): void {
   if(handleEvent) {
     handleEvent()
   }
 }
 
-function handleSubmit() {
+function handleSubmit(): void {
   if (task.value.title && task.value.description) {
     if (props.modalTitle === 'Update') {
       taskStore.updateTask(task.value);
@@ -53,12 +53,12 @@ function handleSubmit() {
   }
 }
 
-function closeModal() {
+function closeModal(): void {
   store.openAddTask = false
   updateTask()
 }
 
-function updateStatus(status: Status) {
+function updateStatus(status: Status): void {
   task.value.status = status
 }
 

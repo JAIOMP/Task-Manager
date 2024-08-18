@@ -4,7 +4,7 @@ import TaskButton from '../atoms/Button.vue'
 
 const store = useTaskStore()
 
-function addTask() {
+function addTask(): void {
   store.openAddTask = true
 }
 
