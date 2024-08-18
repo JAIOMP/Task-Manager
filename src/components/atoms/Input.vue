@@ -7,9 +7,8 @@ interface Props {
   id: string
   type?: string
   value: string
-  errorMessage: string | null
   customClass?: string
-  required: boolean
+  required?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -19,7 +18,6 @@ withDefaults(defineProps<Props>(), {
   type: 'text',
   value: '',
   customClass: '',
-  errorMessage: null,
   required: false
 })
 

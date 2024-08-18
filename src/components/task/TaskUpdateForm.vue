@@ -153,7 +153,7 @@ function updateStatus(status: Status): void {
   }
 }
 .todo__task-form-cross {
-  font-size: 32px;
+  font-size: $font-size-xlarge;
   background-color: $card-bg-color;
   color: $muted-text-color;
   transition: transform 0.4s ease;
@@ -168,7 +168,7 @@ function updateStatus(status: Status): void {
   right: 32px;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: $font-size-large;
   cursor: pointer;
 }
 </style>

@@ -16,15 +16,15 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: $font-size-xlarge;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: $font-size-large;
 }
 
 h3 {
-  font-size: 18px;
+  font-size: $font-size-medium;
 }
 
 .todo__task-card {
@@ -35,7 +35,7 @@ h3 {
   margin-bottom: $padding-lg;
 
   .todo__task-title {
-    font-size: 18px;
+    font-size: $font-size-medium;
     font-weight: $font-weight-bold;
     margin-bottom: calc($padding-base / 2);
   }
