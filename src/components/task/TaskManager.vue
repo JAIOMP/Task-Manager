@@ -3,6 +3,7 @@ import { provide, ref } from 'vue'
 import { Task } from '../../configs/types'
 import { useTaskStore } from '../../stores/taskStore'
 import { DEFAULT_TASK } from '../../configs/constants'
+import Heading from '../../components/atoms/Heading.vue'
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
 import TaskUpdateForm from './TaskUpdateForm.vue'
@@ -30,13 +31,14 @@ function updateTask(task: Task | undefined): void {
     updatedTask.value = initModalTask
   }
 }
-
+console.log(store.initTasks)
 </script>
 
 <template>
   <div class="todo__task-manager">
-    <TaskFilter :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
-    <TaskList />
+    <TaskFilter :class="`${store.initTasks.length < 2 ? 'disabled-filter' : ''}`" :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
+    <TaskList v-if="store.initTasks.length" />
+    <Heading v-else tag="h2">Add your first task!</Heading>
     <TaskUpdateForm 
       v-if="store.openAddTask"
       :id="updatedTask.id"
@@ -58,5 +60,10 @@ function updateTask(task: Task | undefined): void {
     display: flex;
     column-gap: 48px;
   }
+}
+
+.disabled-filter {
+  opacity: 0.6;
+  pointer-events: none;
 }
 </style>
