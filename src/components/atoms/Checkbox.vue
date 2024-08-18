@@ -3,8 +3,8 @@ import { withDefaults, defineProps } from 'vue'
 
 interface Props {
   change: () => void
-  value: string
-  checked: boolean
+  value?: string
+  checked?: boolean
   label: string
 }
 

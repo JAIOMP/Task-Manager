@@ -10,10 +10,10 @@ const TASK_STATUS = {
 }
 
 interface Props {
-  taskStatus: Status
-  isFilter: boolean
-  setFilter: Function
-  updateStatus: Function
+  taskStatus?: Status
+  isFilter?: boolean
+  setFilter?: Function
+  updateStatus?: Function
 }
 
 const props = withDefaults(defineProps<Props>(), {

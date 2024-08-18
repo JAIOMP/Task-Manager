@@ -5,8 +5,8 @@ type Tag = 'h1' | 'h2' | 'h3' | 'p'
 
 interface Props {
   tag: Tag
-  color: string
-  customClass: string,
+  color?: string
+  customClass?: string,
 }
 
 withDefaults(defineProps<Props>(), {
