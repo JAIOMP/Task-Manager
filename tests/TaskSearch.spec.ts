@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
-import SearchBar from '../src/components/task/TaskSearch.vue'; // Adjust the path as necessary
+import SearchBar from '../src/components/task/TaskSearch.vue';
 import { useTaskStore } from '../src/stores/taskStore';
 
 describe('SearchBar.vue', () => {
