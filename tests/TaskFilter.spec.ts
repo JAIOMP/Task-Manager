@@ -3,11 +3,13 @@ import { describe, it, expect, vi } from 'vitest';
 import TaskFilter from '../src/components/task/TaskFilter.vue';
 import TaskStatus from '../src/components/task/TaskStatus.vue';
 import Checkbox from '../src/components/atoms/Checkbox.vue';
+import { createTestingPinia } from '@pinia/testing';
 
 describe('TaskFilter.vue', () => {
   it('renders the component correctly', () => {
     const wrapper = mount(TaskFilter, {
       global: {
+        plugins: [createTestingPinia()],
         components: {
           TaskStatus,
           Checkbox,
@@ -27,6 +29,7 @@ describe('TaskFilter.vue', () => {
         setFilters,
       },
       global: {
+        plugins: [createTestingPinia()],
         components: {
           TaskStatus,
           Checkbox,
