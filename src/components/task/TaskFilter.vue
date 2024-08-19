@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TaskStatus from './TaskStatus.vue'
 import { withDefaults, defineProps } from 'vue'
+import TaskSearch from './TaskSearch.vue'
 import Heading from '../atoms/Heading.vue'
 import Checkbox from '../atoms/Checkbox.vue'
 
@@ -18,6 +19,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="todo__task-filter">
+    <TaskSearch class="todo__task-filter-search"/>
     <div class="todo__task-filter-status">
       <Heading tag="h3">Select status: </Heading>
       <TaskStatus 
@@ -41,10 +43,29 @@ withDefaults(defineProps<Props>(), {
   align-items: flex-start;
   margin-bottom: 32px;
   gap: 32px;
+  flex-direction: column;
 
   @include media('desktop') {
     width: 176px;
-    flex-direction: column;
+  }
+
+  @include media-range('mobile', 'desktop') {
+    flex-direction: unset;
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+    place-items: start;
+
+    .todo__task-filter-search {
+      grid-column: 1 / -1;
+    }
+
+    .todo__task-filter-status,
+    .todo__task-filter-sort {
+      grid-column: span 1;
+    }
   }
 }
 .todo__task-filter-status {

@@ -12,6 +12,7 @@ export const useTaskStore = defineStore({
     tasks: [] as Task[],
     filters: {} as Filters,
     isSortedByDueDate: false,
+    searchQuery: '' as string,
     openAddTask: false
   }),
   actions: {
@@ -33,7 +34,6 @@ export const useTaskStore = defineStore({
     },
     setFilters(event?: Event): void {
       const filterTarget = (event?.target as HTMLInputElement)
-      const tasks = []
       
       if(filterTarget?.checked) {
         this.filters[filterTarget?.value] = true
@@ -58,6 +58,29 @@ export const useTaskStore = defineStore({
       } else {
         this.setFilters()
       }
+    },
+    setSearchQuery(query: string) {
+      this.searchQuery = query.toLowerCase();
+      this.applyFiltersAndSearch();
+    },
+    applyFiltersAndSearch() {
+      let filteredTasks = [...this.initTasks];
+
+      const activeFilters = Object.keys(this.filters);
+      if (activeFilters.length > 0) {
+        filteredTasks = filteredTasks.filter(task =>
+          activeFilters.includes(task.status as string)
+        );
+      }
+
+      if (this.searchQuery) {
+        filteredTasks = filteredTasks.filter(task =>
+          task.title.toLowerCase().includes(this.searchQuery) ||
+          task.description.toLowerCase().includes(this.searchQuery)
+        );
+      }
+
+      this.tasks = filteredTasks;
     }
   },
   persist: true,

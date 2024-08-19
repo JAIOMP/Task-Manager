@@ -31,7 +31,6 @@ function updateTask(task: Task | undefined): void {
     updatedTask.value = initModalTask
   }
 }
-console.log(store.initTasks)
 </script>
 
 <template>

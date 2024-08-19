@@ -57,13 +57,8 @@ function updateTask(task: Task): void {
   max-width: 480px;
   text-align: left;
   border-radius: 8px;
-  background-color: var(--white);
   padding: 40px 32px;
   transition: all .5s ease-in-out;
-}
-
-.todo__task-title-desc {
-   border-bottom: 1px solid var(--pale-sky);
 }
 
 .todo__task-title {
@@ -87,7 +82,6 @@ function updateTask(task: Task): void {
 .todo__task-status {
   padding: 8px;
   border-radius: 8px;
-  background-color: var(--lush-green);
 }
 
 .todo__task-footer {
