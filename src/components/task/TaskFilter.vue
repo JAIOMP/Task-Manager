@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="todo__task-filter">
+  <nav role="navigation" class="todo__task-filter">
     <TaskSearch class="todo__task-filter-search"/>
     <div class="todo__task-filter-status">
       <Heading tag="h3">Select status: </Heading>
@@ -32,7 +32,7 @@ withDefaults(defineProps<Props>(), {
       <Heading tag="h3">Sort by: </Heading>
       <Checkbox label="Due date" value="Due date" :change="sortTaskByDueDate" />
     </div>
-  </div>
+  </nav>
 </template>
 
 <style lang="scss" scoped>
@@ -41,12 +41,16 @@ withDefaults(defineProps<Props>(), {
 .todo__task-filter {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 32px;
+  padding: 96px 48px;
   gap: 32px;
   flex-direction: column;
+  background-color: #f9f9f9;
+  border-color: #0d0d0d0d;
+  border-width: 1px;
+  border-style: solid;
 
   @include media('desktop') {
-    width: 176px;
+    width: 250px;
   }
 
   @include media-range('mobile', 'desktop') {

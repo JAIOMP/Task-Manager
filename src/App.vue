@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import TaskManager from './components/task/TaskManager.vue';
-import Header from './components/shared/Header.vue';
 </script>
 
 <template>
-  <Header />
   <TaskManager class="task-manager"/>
 </template>
 
@@ -16,11 +14,10 @@ import Header from './components/shared/Header.vue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  height: 100vh;
 }
 
 .task-manager {
-  margin: 0 96px;
-
   @include media-range('mobile', 'desktop') {
     margin: 0 32px; 
   }
@@ -30,5 +27,6 @@ import Header from './components/shared/Header.vue';
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
 }
 </style>

@@ -26,11 +26,6 @@ function addTask(): void {
   justify-content: space-between;
   align-items: center;
   text-align: start;
-  padding: 16px 32px;
-  margin-bottom: 24px;
-  
-  @include media('desktop') {
-    padding: 16px 90px;
-  }
+  margin: 24px 0;
 }
 </style>

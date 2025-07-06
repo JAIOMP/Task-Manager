@@ -4,6 +4,7 @@ import { Task } from '../../configs/types'
 import { useTaskStore } from '../../stores/taskStore'
 import { DEFAULT_TASK } from '../../configs/constants'
 import Heading from '../../components/atoms/Heading.vue'
+import Header from '../../components/shared/Header.vue';
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
 import TaskUpdateForm from './TaskUpdateForm.vue'
@@ -35,18 +36,21 @@ function updateTask(task: Task | undefined): void {
 
 <template>
   <div class="todo__task-manager">
-    <TaskFilter :class="`${store.initTasks.length < 2 ? 'disabled-filter' : ''}`" :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
-    <TaskList v-if="store.initTasks.length" />
-    <Heading v-else tag="h2">Add your first task!</Heading>
-    <TaskUpdateForm 
-      v-if="store.openAddTask"
-      :id="updatedTask.id"
-      :title="updatedTask.title"
-      :description="updatedTask.description"
-      :dueDate="updatedTask.dueDate"
-      :status="updatedTask.status"
-      :modalTitle="updatedTask.modalTitle"
-    />
+    <TaskFilter v-if="store.initTasks.length > 1" :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
+    <main class="todo__task-manager-main">
+      <Header />
+      <TaskList v-if="store.initTasks.length" />
+      <Heading v-else tag="h2">Add your first task!</Heading>
+      <TaskUpdateForm
+        v-if="store.openAddTask"
+        :id="updatedTask.id"
+        :title="updatedTask.title"
+        :description="updatedTask.description"
+        :dueDate="updatedTask.dueDate"
+        :status="updatedTask.status"
+        :modalTitle="updatedTask.modalTitle"
+      />
+    </main>
   </div>
 </template>
 
@@ -55,14 +59,14 @@ function updateTask(task: Task | undefined): void {
 @import '@/assets/styles/media-queries';
 
 .todo__task-manager {
-  @include media('desktop') {   
+  @include media('desktop') {
     display: flex;
-    column-gap: 48px;
+    height: 100%;
   }
 }
 
-.disabled-filter {
-  opacity: 0.6;
-  pointer-events: none;
+.todo__task-manager-main {
+  flex: 1;
+  padding: 0 48px;
 }
 </style>
