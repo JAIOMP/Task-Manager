@@ -22,6 +22,11 @@ function updateTask(task: Task): void {
   }
 }
 
+function deleteTaskById(taskId: number | null): void {
+  // Keep behavior compatible with existing tests which pass null ids
+  store.deleteTask((taskId as unknown) as number)
+}
+
 </script>
 
 <template>
@@ -41,9 +46,12 @@ function updateTask(task: Task): void {
           {{ task.status }}
         </div>
       </div>
+      <div v-if="task.tags?.length" class="todo__task-tags">
+        <span v-for="tag in task.tags" :key="tag" class="todo__task-tag">#{{ tag }}</span>
+      </div>
       <div class="todo__task-footer">
         <img width="20" height="20" src="@/assets/icons/icon-edit.svg" alt="edit" @click="() => updateTask(task)"/>
-        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" @click="store.deleteTask(task.id as number)"/>
+        <img width="20" height="20" src="@/assets/icons/icon-delete.svg" alt="delete" @click="deleteTaskById(task.id)"/>
       </div>
     </div>
 </template>
@@ -102,5 +110,19 @@ function updateTask(task: Task): void {
 .todo__task-card:hover {
   opacity: 1;
   box-shadow: 0 24px 32px -16px rgba(0, 95, 247, .15);
+}
+
+.todo__task-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.todo__task-tag {
+  background-color: #f0f4ff;
+  color: #2d5bff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
 }
 </style>

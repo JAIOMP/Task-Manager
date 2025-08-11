@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import TaskStatus from './TaskStatus.vue'
-import { withDefaults, defineProps } from 'vue'
+import { withDefaults, defineProps, computed } from 'vue'
 import TaskSearch from './TaskSearch.vue'
 import Heading from '../atoms/Heading.vue'
 import Checkbox from '../atoms/Checkbox.vue'
+import { useTaskStore } from '../../stores/taskStore'
 
 interface Props {
   setFilters?: () => void
   sortTaskByDueDate?: () => void
+  setTagFilters?: () => void
 }
 
 withDefaults(defineProps<Props>(), {
   setFilters: () => {},
-  sortTaskByDueDate: () => {}
+  sortTaskByDueDate: () => {},
+  setTagFilters: () => {}
 })
 
+const store = useTaskStore()
+const uniqueTags = computed(() => {
+  const all = store.initTasks.flatMap(task => task.tags ?? [])
+  return Array.from(new Set(all))
+})
 </script>
 
 <template>
@@ -31,6 +39,19 @@ withDefaults(defineProps<Props>(), {
     <div class="todo__task-filter-sort">
       <Heading tag="h3">Sort by: </Heading>
       <Checkbox label="Due date" value="Due date" :change="sortTaskByDueDate" />
+    </div>
+
+    <div class="todo__task-filter-tags" v-if="uniqueTags.length">
+      <Heading tag="h3">Select tags: </Heading>
+      <div class="todo__task-tags-list">
+        <Checkbox 
+          v-for="tag in uniqueTags" 
+          :key="tag" 
+          :label="tag" 
+          :value="tag" 
+          :change="setTagFilters" 
+        />
+      </div>
     </div>
   </nav>
 </template>
@@ -79,5 +100,15 @@ withDefaults(defineProps<Props>(), {
 }
 .todo__task-filter-sort {
   text-align: start;
+}
+.todo__task-filter-tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.todo__task-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
 }
 </style>

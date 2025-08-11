@@ -11,6 +11,7 @@ export const useTaskStore = defineStore({
     initTasks: [] as Task[],
     tasks: [] as Task[],
     filters: {} as Filters,
+    tagFilters: {} as Filters,
     isSortedByDueDate: false,
     searchQuery: '' as string,
     openAddTask: false
@@ -40,16 +41,16 @@ export const useTaskStore = defineStore({
       } else {
         delete this.filters[filterTarget?.value]
       }
-
-      const activeFilters = Object.keys(this.filters)
-  
-      if (activeFilters.length > 0) {
-        this.tasks = this.initTasks.filter((task) =>
-          activeFilters.includes(task.status as string)
-        );
+      this.applyFiltersAndSearch();
+    },
+    setTagFilters(event?: Event): void {
+      const filterTarget = (event?.target as HTMLInputElement)
+      if (filterTarget?.checked) {
+        this.tagFilters[filterTarget?.value] = true
       } else {
-        this.tasks = [...this.initTasks];
+        delete this.tagFilters[filterTarget?.value]
       }
+      this.applyFiltersAndSearch();
     },
     sortTasks(event?: Event): void {
       const target = event!.target as HTMLInputElement
@@ -73,10 +74,18 @@ export const useTaskStore = defineStore({
         );
       }
 
+      const activeTags = Object.keys(this.tagFilters)
+      if (activeTags.length > 0) {
+        filteredTasks = filteredTasks.filter(task =>
+          activeTags.some(tag => task.tags?.includes(tag))
+        )
+      }
+
       if (this.searchQuery) {
         filteredTasks = filteredTasks.filter(task =>
           task.title.toLowerCase().includes(this.searchQuery) ||
-          task.description.toLowerCase().includes(this.searchQuery)
+          task.description.toLowerCase().includes(this.searchQuery) ||
+          (task.tags?.some(tag => tag.toLowerCase().includes(this.searchQuery)) ?? false)
         );
       }
 

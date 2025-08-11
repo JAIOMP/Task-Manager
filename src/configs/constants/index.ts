@@ -6,4 +6,5 @@ export const DEFAULT_TASK: Task = {
   description: '',
   status: 'Pending',
   dueDate: '',
+  tags: [],
 }

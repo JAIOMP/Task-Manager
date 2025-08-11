@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, withDefaults, defineProps, inject} from 'vue'
 import { Status, Task } from '../../configs/types'
-import { DEFAULT_TASK } from '../../configs/constants'
+// import { DEFAULT_TASK } from '../../configs/constants'
 import TaskStatus from './TaskStatus.vue'
 import TaskInput from '../atoms/Input.vue'
 import TaskButton from '../atoms/Button.vue'
@@ -15,11 +15,17 @@ interface Props {
   dueDate?: string
   status?: Status
   modalTitle?: string
+  tags?: string[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  ...DEFAULT_TASK,
-  modalTitle: 'Add'
+  id: null,
+  title: '',
+  description: '',
+  dueDate: '',
+  status: 'Pending' as Status,
+  modalTitle: 'Add',
+  tags: () => [] as string[]
 })
 
 const store = useTaskStore()
@@ -30,12 +36,14 @@ const task = ref<Task>({
   description: props.description,
   dueDate: props.dueDate,
   status: props.status as Status,
+  tags: props.tags || []
 })
 
 const taskStore = useTaskStore()
 const handleEvent = inject<Function>('update-task')
 
 const formError = ref<string | null>(null)
+const tagsText = ref<string>((props.tags ?? []).join(', '))
 
 function validateForm(): boolean {
   let isValid = true;
@@ -58,12 +66,19 @@ function updateTask(): void {
 
 function handleSubmit(): void {
   if (validateForm()) {
+    const parsedTags = tagsText.value
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(Boolean)
+
+    task.value.tags = parsedTags
     if (props.modalTitle === 'Update') {
       taskStore.updateTask(task.value);
     } else {
       taskStore.addTask({ ...task.value, id: Date.now() });
     }
-    task.value = { id: Date.now(), title: '', description: '', status: 'Pending', dueDate: '' }
+    task.value = { id: Date.now(), title: '', description: '', status: 'Pending', dueDate: '', tags: [] }
+    tagsText.value = ''
     closeModal()
   }
 }
@@ -107,6 +122,13 @@ function updateStatus(status: Status): void {
           :value="task.dueDate" 
           v-model="task.dueDate" 
           required 
+        />
+
+        <TaskInput 
+          placeholder="Tags (comma separated)" 
+          id="tags" 
+          :value="tagsText" 
+          v-model="tagsText"
         />
 
         <Heading v-if="formError" tag="p" class="error-message"> {{ formError }} </Heading>

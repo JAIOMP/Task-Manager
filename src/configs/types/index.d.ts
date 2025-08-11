@@ -6,6 +6,7 @@ export interface Task {
   description: string;
   status: Status;
   dueDate: string;
+  tags?: string[];
 }
 
 export type ButtonType = 'button' | 'submit' | 'reset'; 

@@ -36,7 +36,12 @@ function updateTask(task: Task | undefined): void {
 
 <template>
   <div class="todo__task-manager">
-    <TaskFilter v-if="store.initTasks.length > 1" :setFilters="store.setFilters" :sortTaskByDueDate="store.sortTasks"/>
+    <TaskFilter 
+      v-if="store.initTasks.length > 1" 
+      :setFilters="store.setFilters" 
+      :setTagFilters="store.setTagFilters"
+      :sortTaskByDueDate="store.sortTasks"
+    />
     <main class="todo__task-manager-main">
       <Header />
       <TaskList v-if="store.initTasks.length" />
@@ -48,6 +53,7 @@ function updateTask(task: Task | undefined): void {
         :description="updatedTask.description"
         :dueDate="updatedTask.dueDate"
         :status="updatedTask.status"
+        :tags="updatedTask.tags"
         :modalTitle="updatedTask.modalTitle"
       />
     </main>
