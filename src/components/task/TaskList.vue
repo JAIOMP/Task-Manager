@@ -1,14 +1,25 @@
 <script setup lang="ts">
-import { useTaskStore } from '../../stores/taskStore'
 import TaskCard from './TaskCard.vue'
+import { onMounted } from 'vue'
+import { getTodos } from '../../lib/supabase'
+import { ref } from 'vue'
 
-const store = useTaskStore()
+const todos = ref([])
+
+onMounted(async () => {
+  try {
+    const todosFromDB = await getTodos()
+    todos.value = todosFromDB
+  } catch (error) {
+    console.error('Failed to fetch todos:', error)
+  }
+})
 
 </script>
 <template>
   <div class="todo__task-list">
     <TaskCard 
-      v-for="task in store.tasks" 
+      v-for="task in todos"
       :key="task.id" 
       :task="task"
     />

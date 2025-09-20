@@ -1,9 +1,13 @@
 import { Task } from '@/configs/types'
+import { createTodo } from '@/lib/supabase';
 import { defineStore } from 'pinia';
 
 interface Filters {
   [key: string]: boolean;
 }
+
+import { useAuth } from '../lib/useAuth'
+const { user } = useAuth()
 
 export const useTaskStore = defineStore({
   id: 'taskStore',
@@ -17,9 +21,23 @@ export const useTaskStore = defineStore({
     openAddTask: false
   }),
   actions: {
-    addTask(task: Task): void {
+    async addTask(task: Task): Promise<void> {
+      // Update local state immediately
       this.initTasks.push(task)
       this.tasks = [...this.initTasks]
+
+      try {
+        // Save to Supabase
+        await createTodo(
+          task.title,
+          user.value?.id || '',
+          task.description,
+          task.dueDate,
+          task.tags || []
+        )
+      } catch (error) {
+        console.error('Failed to create todo in Supabase:', error)
+      }
     },
     updateTask(updatedTask: Task): void {
       const index = this.initTasks.findIndex(task => task.id === updatedTask.id);
