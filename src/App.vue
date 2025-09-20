@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TaskManager from './components/task/TaskManager.vue';
+import Home from './components/views/Home.vue';
 </script>
 
 <template>
-  <TaskManager class="task-manager"/>
+  <Home />
 </template>
 
 
