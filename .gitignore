@@ -25,3 +25,4 @@ pnpm-debug.log*
 *storybook.log
 coverage
 storybook-static
+.env

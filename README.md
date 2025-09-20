@@ -157,6 +157,10 @@ These tools help with development but are not included in the final production b
 - **sass**: A preprocessor that compiles SCSS to CSS.
 - **typescript**: Adds static typing to JavaScript for improved developer experience and error checking.
 
+## Supabase Setup
+npx supabase login
+
+
 ## Conclusion
 
 This README provides an overview of how to work with the Task Manager project, including explanations of the available npm scripts and their use cases. For further information or detailed usage, please refer to the official documentation of the respective tools and libraries.
