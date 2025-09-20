@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import TaskManager from './components/task/TaskManager.vue';
-import Login from './components/user/Login.vue';
 </script>
 
 <template>
-  <Login />
   <TaskManager class="task-manager"/>
 </template>
 

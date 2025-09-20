@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTaskStore } from '../../stores/taskStore'
 import TaskButton from '../atoms/Button.vue'
+import UserMenu from '../user/UserMenu.vue'
 
 const store = useTaskStore()
 
@@ -13,6 +14,7 @@ function addTask(): void {
 <template>
     <header class="task-manager__header">
       <h1 class="task-manager__header-title">Task Manager</h1>
+      <UserMenu />
       <TaskButton class="task-manager__header-button" value="Add Task" @click="addTask"/>
     </header>
 </template>
