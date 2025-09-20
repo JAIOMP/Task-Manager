@@ -44,8 +44,8 @@ function updateTask(task: Task | undefined): void {
     />
     <main class="todo__task-manager-main">
       <Header />
-      <TaskList v-if="store.initTasks.length" />
-      <Heading v-else tag="h2">Add your first task!</Heading>
+      <TaskList />
+      <Heading v-if="!store.tasks.length" tag="h2">Add your first task!</Heading>
       <TaskUpdateForm
         v-if="store.openAddTask"
         :id="updatedTask.id"

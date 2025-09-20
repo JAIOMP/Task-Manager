@@ -12,7 +12,7 @@ function normalizeTodoInput<T extends Partial<TodoInsert | TodoUpdate>>(todo: T)
   return {
     ...todo,
     tags: todo.tags ? toRaw(todo.tags) : undefined,
-    due_date: todo.due_date ? new Date(todo.due_date).toISOString() : todo.due_date,
+    due_date: todo.due_date ? new Date(todo.due_date).toISOString() : null,
   } as T
 }
 
@@ -53,5 +53,43 @@ export async function createTodo(
     .select()
 
   if (error) throw error
+  return data
+}
+
+export async function updateTodo(
+  id: number,
+  updates: Partial<{
+    title: string
+    description: string
+    due_date: string
+    status: string
+    tags: string[]
+    completed: boolean
+  }>
+) {
+  const updatedData: TodoUpdate = normalizeTodoInput(updates)
+
+  const { data, error } = await supabase
+    .from('todos')
+    .update(updatedData)
+    .eq('id', id)
+    .select()
+
+  if (error) throw error
+  return data
+}
+
+export async function deleteTodo(id: number) {
+  const { data, error } = await supabase
+    .from('todos')
+    .delete()
+    .eq('id', id)
+    .select() // optional: return deleted row
+
+  if (error) {
+    console.error('Error deleting todo:', error.message)
+    throw error
+  }
+
   return data
 }
