@@ -4,7 +4,6 @@ import { Task } from '../../configs/types'
 import { useTaskStore } from '../../stores/taskStore'
 import { DEFAULT_TASK } from '../../configs/constants'
 import Heading from '../../components/atoms/Heading.vue'
-import Header from '../../components/shared/Header.vue';
 import TaskList from './TaskList.vue'
 import TaskFilter from './TaskFilter.vue'
 import TaskUpdateForm from './TaskUpdateForm.vue'
@@ -43,7 +42,6 @@ function updateTask(task: Task | undefined): void {
       :sortTaskByDueDate="store.sortTasks"
     />
     <main class="todo__task-manager-main">
-      <Header />
       <TaskList />
       <Heading v-if="!store.tasks.length" tag="h2">Add your first task!</Heading>
       <TaskUpdateForm
