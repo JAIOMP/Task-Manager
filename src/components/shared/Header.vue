@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useTaskStore } from '../../stores/taskStore'
 import TaskButton from '../atoms/Button.vue'
+import { useAuth } from '../../lib/useAuth'
+const { user, signOut } = useAuth()
 
 const store = useTaskStore()
 
@@ -11,10 +13,13 @@ function addTask(): void {
 </script>
 
 <template>
-    <header class="task-manager__header">
-      <h1 class="task-manager__header-title">Task Manager</h1>
-      <TaskButton class="task-manager__header-button" value="Add Task" @click="addTask"/>
-    </header>
+  <header v-if="user" class="task-manager__header">
+    <h1 class="task-manager__header-title">Task Manager</h1>
+    <div class="task-manager__header-buttons">
+      <TaskButton class="task-manager__header-button" value="Add Task" @click="addTask" />
+      <button @click="signOut">Sign out</button>
+    </div>
+  </header>
 </template>
 
 
@@ -27,5 +32,10 @@ function addTask(): void {
   align-items: center;
   text-align: start;
   margin: 24px 0;
+
+  .task-manager__header-buttons {
+    display: flex;
+    gap: 16px;
+  }
 }
 </style>

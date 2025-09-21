@@ -2,8 +2,9 @@
   <div>
     <div v-if="!user">
       <h2>Welcome to Task Manager</h2>
+      <p>You are not signed in.</p>
+      <Login />
     </div>
-    <UserMenu />
     <div v-if="user">
       <main>
         <TaskManager class="task-manager"/>
@@ -14,8 +15,8 @@
 
 <script lang="ts" setup>
 import { useAuth } from '../../lib/useAuth'
-import UserMenu from '../user/UserMenu.vue'
 import TaskManager from '../task/TaskManager.vue'
+import Login from '../user/Login.vue'
 const { user } = useAuth()
 </script>
 

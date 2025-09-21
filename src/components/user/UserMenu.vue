@@ -1,6 +1,5 @@
 <template>
   <div v-if="user">
-    <p>Welcome, {{ user.email }}</p>
     <button @click="signOut">Sign out</button>
   </div>
   <div v-else>
