@@ -6,8 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch"
@@ -16,6 +14,7 @@
     "core-js": "^3.8.3",
     "pinia": "^2.2.1",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "sortablejs": "^1.15.7",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0"
   },
@@ -32,6 +31,7 @@
     "@storybook/test": "^8.2.8",
     "@storybook/vue3": "^8.2.8",
     "@storybook/vue3-vite": "^8.2.8",
+    "@types/sortablejs": "^1.15.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vitejs/plugin-vue": "^5.1.2",
@@ -55,19 +55,21 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "vue/setup-compiler-macros": true
     },
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended",
-      "@vue/typescript",
-      "plugin:storybook/recommended"
+      "@vue/typescript"
     ],
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
     },
     "rules": {
-      "vue/multi-word-component-names": "off"
+      "vue/multi-word-component-names": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
     }
   },
   "browserslist": [

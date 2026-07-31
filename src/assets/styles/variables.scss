@@ -7,7 +7,7 @@ $text-color: #4A4A4A;
 $muted-text-color: #9B9B9B;
 $error-color: #D0021B;
 
-$font-family: Avenir, Helvetica, Arial, sans-serif;
+$font-family: 'Segoe UI', 'Avenir Next', Avenir, Helvetica, sans-serif;
 $font-size-body: 16px;
 $font-size-small: 14px;
 $font-size-medium: 18px;
@@ -21,3 +21,49 @@ $line-height: 1.5;
 $padding-base: 16px;
 $padding-lg: 24px;
 $border-radius: 8px;
+
+:root {
+  --bg: #f0f3f7;
+  --bg-elevated: #ffffff;
+  --bg-muted: #e8edf3;
+  --text: #2c3440;
+  --text-muted: #6b7585;
+  --border: #d5dde8;
+  --primary: #3b82c4;
+  --primary-hover: #2f6fa8;
+  --accent: #e09b2d;
+  --success: #1a9b7a;
+  --danger: #c62828;
+  --overdue: #c62828;
+  --priority-high: #c62828;
+  --priority-medium: #d97706;
+  --priority-low: #159a5a;
+  --shadow: 0 8px 24px rgba(28, 45, 68, 0.08);
+  --sidebar-width: 240px;
+  --panel-width: 420px;
+  --toast-bg: #1f2937;
+  --toast-text: #f9fafb;
+  --focus-ring: rgba(59, 130, 196, 0.35);
+}
+
+html[data-theme='dark'] {
+  --bg: #12171e;
+  --bg-elevated: #1c2430;
+  --bg-muted: #252e3c;
+  --text: #e8edf4;
+  --text-muted: #9aa6b8;
+  --border: #344054;
+  --primary: #5ba3db;
+  --primary-hover: #7bb8e6;
+  --accent: #e6b04a;
+  --success: #34c49a;
+  --danger: #f07178;
+  --overdue: #f07178;
+  --priority-high: #f07178;
+  --priority-medium: #e6b04a;
+  --priority-low: #3dce8a;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --toast-bg: #0b1017;
+  --toast-text: #f3f6fb;
+  --focus-ring: rgba(91, 163, 219, 0.4);
+}
