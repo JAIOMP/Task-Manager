@@ -1,162 +1,263 @@
-# Task Manager
+# Todolo
 
-## About
+A local-first task manager built with Vue 3. All data stays in your browser (`localStorage`) — no account or backend required.
 
-The Task Manager is a robust and user-friendly application designed to streamline task management. Built with [Vue 3](https://vuejs.org/guide/introduction.html) and powered by [Pinia](https://pinia.vuejs.org/introduction.html) for state management and [Storybook](https://storybook.js.org/docs) for component documentation and testing. It allows users to add, edit, delete, and track tasks with ease. The project emphasizes responsive design, accessibility, and high performance, making it suitable for a wide range of users.
+## Table of contents
 
-## Table of Contents
+- [Getting started](#getting-started)
+- [How to use](#how-to-use)
+  - [Create a task](#1-create-a-task)
+  - [Edit a task](#2-edit-a-task)
+  - [Complete and delete](#3-complete-and-delete)
+  - [Reorder tasks](#4-reorder-tasks)
+  - [Subtasks](#5-subtasks)
+  - [Filter and search](#6-filter-and-search)
+  - [Priority and tags](#7-priority-and-tags)
+  - [Lists / projects](#8-lists--projects)
+  - [Sort](#9-sort)
+  - [Due dates and calendar](#10-due-dates-and-calendar)
+  - [Dark mode](#11-dark-mode)
+  - [Bulk actions](#12-bulk-actions)
+  - [Export and import](#13-export-and-import-move-to-another-device)
+  - [Keyboard shortcuts](#14-keyboard-shortcuts)
+  - [Mobile gestures](#15-mobile-gestures)
+- [Stats bar](#stats-bar)
+- [Data storage](#data-storage)
+- [Project commands](#project-commands)
+- [Tech stack](#tech-stack)
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Project Commands](#project-commands)
-  - [serve](#serve)
-  - [build](#build)
-  - [lint](#lint)
-  - [storybook](#storybook)
-  - [build-storybook](#build-storybook)
-  - [test](#test)
-  - [test:coverage](#testcoverage)
-  - [test:watch](#testwatch)
-- [Dependencies](#dependencies)
-- [Dev Dependencies](#dev-dependencies)
+---
 
-## Features
-The Task Manager project offers the following key features:
+## Getting started
 
-### Core Features:
-  1. **Add Tasks**: Quickly add new tasks with details like title, description, and due date, with a default status of pending
-  2. **Edit Tasks**: Update task information as needed.
-  3. **Delete Tasks**: Remove tasks that are no longer necessary.
-  4. **Mark as In Progress**: Track tasks by marking them as in progress.
-  5. **Mark as Completed**: Track progress by marking tasks as completed.
-  6. **Filter by Status**: Filter tasks based on their status — Pending, In Progress, or Completed.
-  7. **Sort by Due Date**: Sort tasks by their due date to prioritize work effectively
-  8. **Search by Title or Description**: Find tasks quickly by searching for specific words or phrases in the title or description.
-
-### Additional Features:
-  1. **State Management**: Efficient state management with Pinia, leveraging localStorage for persistence.
-  2. **Component Documentation**: Comprehensive documentation of components using Storybook.
-  3. **Unit Testing**: Extensive unit testing with Vitest, achieving over 95% test coverage.
-  4. **Responsive Design**: Optimized for usability across a variety of devices and screen sizes.
-  5. **Accessibility**: Designed to be accessible to all users.
-  6. **LightStep Score of 99**: Reflects exceptional performance and reliability in production environments.
-
-## Getting Started
-
-To get started with this project, ensure you have Node.js and npm (or Yarn) installed on your machine. Clone the repository and install the dependencies:
+1. Install [Node.js](https://nodejs.org/) (LTS recommended).
+2. Clone the repo and install dependencies:
 
 ```bash
 npm install
 ```
 
-or if you use Yarn:
-
-```bash
-yarn install
-```
-
-## Project Commands
-
-### serve
+3. Start the app:
 
 ```bash
 npm run serve
 ```
 
-**Description**: This command starts the local development server using Vue CLI. The server will watch for any changes in your files and automatically reload the page when changes are detected. By default, the development server runs at `http://localhost:8080`.
+4. Open [http://localhost:8080](http://localhost:8080).
 
-**Use Case**: Use this command when you are actively developing your application. It provides a fast feedback loop, allowing you to see your changes in real-time.
+On first load with empty storage, Todolo seeds two example tasks so the UI is not blank.
 
-### build
+---
 
-```bash
-npm run build
-```
+## How to use
 
-**Description**: This command compiles your Vue application for production. It bundles the files, optimizes the assets, and outputs the build to the `dist` directory.
+### 1. Create a task
 
-**Use Case**: Use this command when you are ready to deploy your application to a production environment. The output files are optimized for performance.
+1. Click the **Add a task** input at the top of the list (or press `N`).
+2. Type a title.
+3. Optionally use the quick options row that appears while the input is focused:
+   - Priority (High / Medium / Low)
+   - Due date
+   - Tags (press Enter or comma to add)
+4. Press **Enter** or click **Add**.
 
-### lint
+### 2. Edit a task
 
-```bash
-npm run lint
-```
+1. Click the task title.
+2. The detail panel opens from the right (full screen on mobile).
+3. Edit title, description, priority, due date, due time, tags, list, or subtasks.
+4. Changes save automatically when you leave a field (look for the **Saved** flash).
+5. Close with `Esc`, the ✕ button, or by clicking the backdrop.
 
-**Description**: This command runs ESLint on your codebase to analyze your JavaScript/TypeScript and Vue files for potential errors and code style issues. The linting rules are defined in the `.eslintrc` configuration file.
+### 3. Complete and delete
 
-**Use Case**: Use this command before committing your code to ensure it meets the project's coding standards and to catch any potential bugs early.
+**Complete**
 
-### storybook
+1. Click the checkbox on the left of a task row.
+2. The title gets a strikethrough animation and `completedAt` is recorded.
 
-```bash
-npm run storybook
-```
+**Delete**
 
-**Description**: This command starts the Storybook development server, allowing you to view and interact with your Vue components in isolation. Storybook runs on `http://localhost:6006` by default.
+1. Hover a task and click ✕, or focus the row and press `D`.
+2. A toast appears: **Task deleted · Undo**.
+3. Click **Undo** within 5 seconds to restore it (or press `Ctrl+Z` / `Cmd+Z`).
 
-**Use Case**: Use this command when you want to develop or document individual components without running the entire application. Storybook provides a powerful environment for creating and testing UI components.
+### 4. Reorder tasks
 
-### build-storybook
+1. Set sort to **Manual order** (default).
+2. Hover a task row and drag using the `⠿` handle on the left.
+3. Drop it in the new position — order is saved and survives refresh.
 
-```bash
-npm run build-storybook
-```
+### 5. Subtasks
 
-**Description**: This command builds a static version of your Storybook documentation. The output is saved in the `storybook-static` directory, which you can deploy to any static hosting service.
+1. Open a task’s detail panel.
+2. In **Subtasks**, type a title and press Enter.
+3. Check off or delete individual subtasks.
+4. On the main list, a progress label like `2/5` appears next to the title when subtasks exist.
 
-**Use Case**: Use this command when you want to generate a production-ready version of your Storybook documentation. This is useful for sharing your component library with others or hosting it online.
+### 6. Filter and search
 
-### test
+**Filter tabs** (above the list)
 
-```bash
-npm run test
-```
+| Tab | Shows |
+| --- | --- |
+| All | Every task |
+| Active | Incomplete tasks |
+| Completed | Completed tasks |
+| Today | Tasks due today |
+| Overdue | Incomplete tasks past their due date |
 
-**Description**: This command runs all unit tests in your project using Vitest. It performs a single test run and outputs the results to the console.
+The last-used filter is remembered.
 
-**Use Case**: Use this command to execute your test suite and ensure that your code is functioning as expected. It is typically run during continuous integration (CI) processes.
+**Search**
 
-### test:coverage
+1. Focus search with `/` or click the search box.
+2. Type to filter by title, description, or tags.
+3. Press `Esc` to clear.
+4. When searching, a result count like `3 results for 'meeting'` appears.
 
-```bash
-npm run test:coverage
-```
+### 7. Priority and tags
 
-**Description**: This command runs your test suite with Vitest and generates a code coverage report. The coverage report shows how much of your code is covered by tests and is saved in the `coverage` directory.
+**Priority**
 
-**Use Case**: Use this command to assess the effectiveness of your tests. High coverage indicates that most of your code is being tested, while low coverage may suggest that some areas need more testing.
+1. Set High / Medium / Low in the create row or detail panel.
+2. A colored left border appears on the task row (red / amber / green).
 
-### test:watch
+**Tags**
 
-```bash
-npm run test:watch
-```
+1. In the detail panel (or create row), type a tag and press Enter or comma.
+2. Remove a tag with × on the pill.
+3. Use **Filter by tag** in the toolbar to show only tasks with that tag.
 
-**Description**: This command runs Vitest in watch mode, which means that it will continuously watch your files for changes and re-run the tests whenever you modify your code.
+### 8. Lists / projects
 
-**Use Case**: Use this command during development to get immediate feedback on your tests as you write or modify code. It helps you catch issues early in the development process.
+1. In the left sidebar, click **+ New list**.
+2. Enter a name, pick a color, click **Add**.
+3. Click a list name to show only tasks in that list (**All tasks** shows everything).
+4. Assign a task to a list from the detail panel’s **List** field.
+5. To delete a list: click **…** (or right-click the list) → **Delete list**. Tasks become uncategorized; they are not deleted.
+6. Collapse the sidebar with «; reopen with the menu button when collapsed.
 
-## Dependencies
+### 9. Sort
 
-Here’s a brief overview of the key dependencies used in this project:
+1. Open the **Sort** dropdown in the toolbar.
+2. Choose: Manual order · Due date · Priority · Date created · Alphabetical.
+3. Click **↑ / ↓** to toggle ascending / descending.
+4. Sort preference is persisted.
 
-- **vue**: The progressive JavaScript framework used to build the user interface.
-- **pinia**: The store library for Vue that provides reactive state management.
-- **pinia-plugin-persistedstate**: A plugin for Pinia that persists the state across page reloads.
-- **core-js**: Provides polyfills for JavaScript features to ensure compatibility with older browsers.
+### 10. Due dates and calendar
 
-## Dev Dependencies
+1. Set a due date in the create row or detail panel.
+2. Optionally set a **due time** in the detail panel.
+3. Overdue tasks show red date text and an **Overdue** badge.
+4. To add a calendar reminder:
+   1. Open the task and ensure a due date is set.
+   2. Click **Add to calendar**.
+   3. An `.ics` file downloads — open it in Google Calendar, Apple Calendar, Outlook, etc.
+   4. The button becomes **Reminder set ✓**; use **Export again** to re-download.
 
-These tools help with development but are not included in the final production build:
+### 11. Dark mode
 
-- **@vue/cli-service**: The Vue CLI service used to build and serve your application.
-- **storybook**: A tool for developing UI components in isolation.
-- **vitest**: A blazing-fast unit testing framework that works well with Vue.
-- **@vue/test-utils**: Provides utilities for testing Vue components.
-- **sass**: A preprocessor that compiles SCSS to CSS.
-- **typescript**: Adds static typing to JavaScript for improved developer experience and error checking.
+1. Click the sun / moon icon in the top-right of the header.
+2. Theme is saved and restored on next visit.
 
-## Conclusion
+### 12. Bulk actions
 
-This README provides an overview of how to work with the Task Manager project, including explanations of the available npm scripts and their use cases. For further information or detailed usage, please refer to the official documentation of the respective tools and libraries.
+1. Click **Select** in the toolbar.
+2. Check tasks (or use **Select all**).
+3. Use the bottom bar: Mark complete · Mark incomplete · Delete · Set priority · Assign to list.
+4. Exit with **Done**, **Cancel**, `Esc`, or by clicking outside the list.
+
+### 13. Export and import (move to another device)
+
+**Export on device A**
+
+1. Click **Export / import**.
+2. Choose **Export as JSON** (recommended — includes tasks and lists) or **Export as CSV** (tasks only).
+3. Save the file (e.g. transfer via email, AirDrop, cloud drive).
+
+**Import on device B**
+
+1. Open Todolo on the other device/browser.
+2. Click **Export / import**.
+3. Choose a mode:
+   - **Replace all** — overwrite local tasks (and lists, for JSON backups).
+   - **Merge by id** — keep local data and upsert matching ids.
+4. Click **Choose file** and select the JSON or CSV export.
+5. Use **Undo** in the toast if you need to reverse the import.
+
+Tip: prefer the JSON backup when moving between devices so lists/projects come along.
+
+### 14. Keyboard shortcuts
+
+Press `?` anywhere (when not typing in an input) to open the shortcuts modal.
+
+| Key | Action |
+| --- | --- |
+| `N` | Focus new task input |
+| `/` | Focus search |
+| `E` | Open detail panel for focused task |
+| `D` | Delete focused task |
+| `Space` | Toggle complete on focused task |
+| `Esc` | Close panel / clear search / exit selection |
+| `Ctrl+Z` / `Cmd+Z` | Undo last action |
+| `?` | Show shortcuts |
+
+Focus a task row by clicking or tabbing to it before using `E`, `D`, or `Space`.
+
+### 15. Mobile gestures
+
+On touch devices:
+
+1. Swipe a task row **right** to complete.
+2. Swipe a task row **left** to delete.
+
+---
+
+## Stats bar
+
+Just under the header you always see:
+
+- Tasks completed today
+- Overall progress (`completed / total` and percentage)
+- Overdue count (highlighted when > 0)
+- Tasks due in the next 7 days
+
+Counts update live as you change tasks.
+
+---
+
+## Data storage
+
+Todolo persists everything in the browser:
+
+| Key | Contents |
+| --- | --- |
+| `todolo_tasks` | All tasks (including subtasks, tags, order, etc.) |
+| `todolo_lists` | Lists / projects |
+| `todolo_prefs` | Theme, filter, sort, active list, tag filter, sidebar state |
+
+Clearing site data for this origin will wipe your tasks. Use **Export as JSON** before switching browsers or devices.
+
+---
+
+## Project commands
+
+| Command | Description |
+| --- | --- |
+| `npm run serve` | Dev server at `http://localhost:8080` |
+| `npm run build` | Production build into `dist/` |
+| `npm run lint` | ESLint |
+| `npm run test` | Vitest (watch mode by default via Vitest CLI) |
+| `npm run test:coverage` | Coverage report |
+| `npm run test:watch` | Vitest watch mode |
+
+---
+
+## Tech stack
+
+- Vue 3 + TypeScript + SCSS
+- Composables for task/list/prefs/undo/keyboard state
+- `localStorage` persistence (no backend)
+- SortableJS for drag-and-drop
+- Vitest for unit tests
